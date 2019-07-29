@@ -1,5 +1,4 @@
 import React from "react";
-import MessageItem from "./MessageItem";
 import "./App.css";
 
 const Message = () => {
