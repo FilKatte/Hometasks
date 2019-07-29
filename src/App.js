@@ -1,26 +1,52 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import MessageItem from "./MessageItem";
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class Message extends React.Component {
+  state = {
+    value: "",
+    message: []
+  };
+
+  handleChange = event => {
+    this.setState({ value: event.target.value });
+  };
+
+  handleSubmit = event => {
+    const { value, message } = this.state;
+    event.preventDefault();
+    value &&
+      this.setState({
+        message: [...message, { text: value }],
+        value: ""
+      });
+  };
+
+  render() {
+    const { message } = this.state;
+
+    return (
+      <div>
+        <ul>
+          {message.map((mes, i) => (
+            <MessageItem key={i} text={mes.text} />
+          ))}
+        </ul>
+
+        <form onSubmit={this.handleSubmit}>
+          <label>
+            Сообщение
+            <input
+              type="text"
+              value={this.state.value}
+              onChange={this.handleChange}
+            />
+          </label>
+          <input type="submit" value="Отправить" />
+        </form>
+      </div>
+    );
+  }
 }
 
-export default App;
+export default Message;
