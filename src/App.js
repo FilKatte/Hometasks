@@ -1,52 +1,139 @@
 import React from "react";
-import MessageItem from "./MessageItem";
 import "./App.css";
 
-class Message extends React.Component {
+const credentionals = {
+  name: "james",
+  surname: "bond",
+  password: "007"
+};
+
+class App extends React.Component {
   state = {
-    value: "",
-    message: []
+    name: "",
+    surname: "",
+    password: "",
+    errorName: "",
+    errorSurname: "",
+    errorPassword: "",
+    isConfirmed: false
   };
 
   handleChange = event => {
-    this.setState({ value: event.target.value });
+    this.setState({ [event.target.name]: event.target.value });
   };
 
   handleSubmit = event => {
-    const { value, message } = this.state;
     event.preventDefault();
-    value &&
+
+    const { name, surname, password } = this.state;
+
+    this.setState({
+      errorName: "",
+      errorSurname: "",
+      errorPassword: ""
+    });
+
+    if (
+      name == credentionals.name &&
+      surname == credentionals.surname &&
+      password == credentionals.password
+    ) {
+      alert("Все данные верны");
       this.setState({
-        message: [...message, { text: value }],
-        value: ""
+        name: "",
+        surname: "",
+        password: "",
+        isConfirmed: true
       });
+    }
+
+    if (name) {
+      if (name !== credentionals.name) {
+        this.setState({ name: "", errorName: "Имя указано не верно" });
+      }
+    } else {
+      this.setState({ errorName: "Нужно указать имя" });
+    }
+
+    if (surname) {
+      if (surname !== credentionals.surname) {
+        this.setState({
+          errorSurname: "Фамилия указана не верно"
+        });
+      }
+    } else {
+      this.setState({ errorSurname: "Нужно указать фамилию" });
+    }
+
+    if (password) {
+      if (password !== credentionals.password) {
+        this.setState({
+          password: "",
+          errorPassword: "Пароль указан не верно"
+        });
+      }
+    } else {
+      this.setState({ errorPassword: "Нужно указать пароль" });
+    }
   };
 
   render() {
-    const { message } = this.state;
+    const { errorName, errorSurname, errorPassword, isConfirmed } = this.state;
 
     return (
-      <div>
-        <ul>
-          {message.map((mes, i) => (
-            <MessageItem key={i} text={mes.text} />
-          ))}
-        </ul>
+      <div className="container">
+        <div className="content">
+          {isConfirmed ? (
+            <div className="confirmed">
+              <img
+                src={require("./assets/bond.jpg")}
+                alt="Bond"
+                className="icon"
+              />
+            </div>
+          ) : (
+            <form onSubmit={this.handleSubmit} className="formAgent">
+              <h1 className="title">Введите свои данные, агент</h1>
+              <div className="formContent">
+                <p className="data">
+                  <label htmlFor="name">Имя</label>
+                  <input
+                    type="text"
+                    name="name"
+                    value={this.state.name}
+                    onChange={this.handleChange}
+                  />
+                </p>
+                <p className="error"> {errorName}</p>
+                <p className="data">
+                  <label htmlFor="surname">Фамилия</label>
+                  <input
+                    type="text"
+                    name="surname"
+                    value={this.state.surname}
+                    onChange={this.handleChange}
+                  />
+                </p>
+                <p className="error"> {errorSurname}</p>
+                <p className="data">
+                  <label htmlFor="password">Пароль</label>
+                  <input
+                    type="password"
+                    name="password"
+                    value={this.state.password}
+                    onChange={this.handleChange}
+                  />
+                </p>
+                <p className="error"> {errorPassword}</p>
 
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Сообщение
-            <input
-              type="text"
-              value={this.state.value}
-              onChange={this.handleChange}
-            />
-          </label>
-          <input type="submit" value="Отправить" />
-        </form>
+                <input type="submit" value="Проверить" className="control" />
+              </div>
+            </form>
+          )}
+        </div>
       </div>
     );
   }
 }
 
-export default Message;
+export default App;
