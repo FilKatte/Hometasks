@@ -4,7 +4,9 @@ import "./../App";
 import { getShowInfo } from "./../../api";
 
 class Show extends React.Component {
-  state = { data: null };
+  state = {
+    data: null
+  };
 
   componentDidUpdate(prevProps, prevState) {
     const { showId } = this.props;
