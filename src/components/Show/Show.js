@@ -4,9 +4,25 @@ import "./../App";
 import { getShowInfo } from "./../../api";
 
 class Show extends React.Component {
-  state = { data: null };
+  state = {
+    showId: null,
+    data: null
+  };
 
-  static getDerivedStateFromProps(props, state) {}
+  static getDerivedStateFromProps(props, state) {
+    const { showId } = this.props;
+
+    if (this.state.showId !== this.props.showId) {
+      getShowInfo(showId).then(data => this.setState({ data, showId }));
+    }
+  }
+  // componentDidUpdate(prevProps, prevState) {
+  //   const { showId } = this.props;
+
+  //   if (prevProps.showId !== this.props.showId) {
+  //     getShowInfo(showId).then(data => this.setState({ data }));
+  //   }
+  // }
 
   render() {
     const { data } = this.state;
