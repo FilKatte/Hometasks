@@ -156,15 +156,25 @@ const formData = {
 };
 
 class App extends React.Component {
-  state = {
-    errors: {},
-    isValidate: false,
-    values: { firstname: "", lastname: "", password: "" }
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      errors: {},
+      isValidate: false,
+      values: { firstname: "", lastname: "", password: "" }
+    };
+    this.textInput = React.createRef();
+  }
+
+  componentDidMount() {
+    if (this.textInput.current) {
+      console.log(this.textInput.current);
+      this.textInput.current.focus();
+    }
+  }
 
   changeInput = e => {
     const target = e.target;
-
     this.setState({
       values: { ...this.state.values, ...{ [target.name]: target.value } },
       errors: {}
@@ -193,7 +203,7 @@ class App extends React.Component {
       <div className="container">
         {!isValidate ? (
           <form className="content" onSubmit={this.handleSubmit}>
-            <h1 classN="title">Введите свои данные агент</h1>
+            <h1 className="title">Введите свои данные агент</h1>
             <p className="field">
               <label className="field__label" htmlFor="firstname">
                 <span className="field-label">Имя</span>
@@ -204,6 +214,7 @@ class App extends React.Component {
                 name="firstname"
                 value={values["firstname"]}
                 onChange={this.changeInput}
+                ref={this.textInput}
               />
               <span className="error">{errors["firstname"]}</span>
             </p>
