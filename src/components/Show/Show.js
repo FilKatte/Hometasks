@@ -13,9 +13,9 @@ class Show extends React.Component {
       getShowInfo(showId).then(data => this.setState({ data }));
     }
   }
+
   render() {
     const { data } = this.state;
-
     return (
       <div>
         {data && (
