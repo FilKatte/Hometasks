@@ -1,52 +1,30 @@
 import React from "react";
-import MessageItem from "./MessageItem";
-import "./App.css";
+import { Link, Route } from "react-router-dom";
 
-class Message extends React.Component {
-  state = {
-    value: "",
-    message: []
-  };
+const Home = () => <p>Home page</p>;
+const About = () => <p>About page</p>;
+const Topics = () => <p>Topics page</p>;
 
-  handleChange = event => {
-    this.setState({ value: event.target.value });
-  };
+const App = () => (
+  <div>
+    <ul>
+      <li>
+        <Link to="/">Home</Link>
+      </li>
+      <li>
+        <Link to="/about">About</Link>
+      </li>
+      <li>
+        <Link to="/topics">Topics</Link>
+      </li>
+    </ul>
 
-  handleSubmit = event => {
-    const { value, message } = this.state;
-    event.preventDefault();
-    value &&
-      this.setState({
-        message: [...message, { text: value }],
-        value: ""
-      });
-  };
+    <hr />
 
-  render() {
-    const { message } = this.state;
+    <Route exact path="/" component={Home} />
+    <Route path="/about" component={About} />
+    <Route path="/topics" component={Topics} />
+  </div>
+);
 
-    return (
-      <div>
-        <ul>
-          {message.map((mes, i) => (
-            <MessageItem key={i} text={mes.text} />
-          ))}
-        </ul>
-
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Сообщение
-            <input
-              type="text"
-              value={this.state.value}
-              onChange={this.handleChange}
-            />
-          </label>
-          <input type="submit" value="Отправить" />
-        </form>
-      </div>
-    );
-  }
-}
-
-export default Message;
+export default App;
