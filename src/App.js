@@ -1,25 +1,19 @@
 import React from "react";
-import { Link, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
+import Nav from "./Nav/Nav";
+import About from "./About";
+import Home from "./Home/Home";
+import Topics from "./Topics/Topics";
 
-const Home = () => <p>Home page</p>;
-const About = () => <p>About page</p>;
-const Topics = () => <p>Topics page</p>;
+const links = [
+  { path: "/", title: "Home", exact: true },
+  { path: "/about", title: "About", exact: false },
+  { path: "/topics", title: "Topics", exact: false }
+];
 
 const App = () => (
   <div>
-    <ul>
-      <li>
-        <Link to="/">Home</Link>
-      </li>
-      <li>
-        <Link to="/about">About</Link>
-      </li>
-      <li>
-        <Link to="/topics">Topics</Link>
-      </li>
-    </ul>
-
-    <hr />
+    <Nav links={links} />
 
     <Route exact path="/" component={Home} />
     <Route path="/about" component={About} />
