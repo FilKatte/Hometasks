@@ -3,6 +3,7 @@ import { appSelector } from "./store/selectors";
 import { connect } from "react-redux";
 import { increment } from "./store/duck";
 import CurrentFilm from "./containers/CurrentFilm";
+import Message from "./containers/Message";
 
 const mapStateToProp = state => {
   return {
@@ -21,6 +22,8 @@ class App extends React.Component {
     const { app, increment } = this.props;
     return (
       <div>
+        <Message />
+        <hr />
         <CurrentFilm />
         <hr />
         <p>{app.counter}</p>
