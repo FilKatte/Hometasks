@@ -1,31 +1,85 @@
 import React from "react";
-import { Route, Redirect, Switch } from "react-router-dom";
 import "./App.css";
-import Login from "./containers/Login/Login";
-import Public from "./containers/Pablic/Public";
+import { Route, Redirect, Switch, BrowserRouter } from "react-router-dom";
+import { isLoginSelector } from "./store/selectors";
+import { connect } from "react-redux";
+import { checkIsLogin } from "./store/duck";
+import Login from "./containers/Login";
+import Dashboard from "./containers/Dashboard";
 
-const PrivateRoute = ({ component: Component, ...rest }) => (
-  <Route
-    {...rest}
-    render={props =>
-      JSON.parse(localStorage.getItem("isAuth")) ? (
-        <Component {...props} />
-      ) : (
-        <Redirect to="/login" />
-      )
-    }
-  />
-);
+const mapStateToProps = state => {
+  return {
+    isLogin: isLoginSelector(state)
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    checkIsLogin: () => dispatch(checkIsLogin())
+  };
+};
 
 class App extends React.Component {
+  componentDidMount() {
+    const { checkIsLogin } = this.props;
+    checkIsLogin();
+  }
+
   render() {
+    const { isLogin } = this.props;
+
     return (
-      <Switch>
-        <Route exact path="/login" component={Login} />
-        <PrivateRoute path="/public" component={Public} />
-      </Switch>
+      <BrowserRouter>
+        <Switch>
+          <PublicRoute
+            restricted={true}
+            isLogin={isLogin}
+            component={Login}
+            path="/login"
+            exact
+          />
+          <PrivateRoute
+            path="/dashboard"
+            isLogin={isLogin}
+            component={Dashboard}
+          />
+          <Redirect to="/dashboard" />
+        </Switch>
+      </BrowserRouter>
     );
   }
 }
 
-export default App;
+const PrivateRoute = ({ component: Component, isLogin, ...rest }) => (
+  <Route
+    {...rest}
+    render={props =>
+      isLogin ? <Component {...props} /> : <Redirect to="/login" />
+    }
+  />
+);
+
+const PublicRoute = ({
+  component: Component,
+  restricted,
+  isLogin,
+  ...rest
+}) => {
+  return (
+    <Route
+      {...rest}
+      render={props =>
+        isLogin && restricted ? (
+          <Redirect to="/dashboard" />
+        ) : (
+          <Component {...props} />
+        )
+      }
+    />
+  );
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);

@@ -1,35 +1,66 @@
 import React from "react";
-import { Redirect } from "react-router-dom";
-import "./style.css";
+import styles from "./Login.module.css";
+import { connect } from "react-redux";
+import { logIn } from "../../store/duck";
+import logo from "./assets/logo.svg";
+
+const mapStateToProp = state => {
+  return {};
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    logIn: () => dispatch(logIn())
+  };
+};
 
 class Login extends React.Component {
-  addLogin = () => {
-    const isAuth = true;
-    localStorage.setItem("isAuth", JSON.stringify(isAuth));
+  loginRef = React.createRef();
+
+  componentDidMount() {
+    if (this.loginRef.current) {
+      this.loginRef.current.focus();
+    }
+  }
+
+  handleSubmit = event => {
+    event.preventDefault();
+    const { logIn } = this.props;
+    logIn();
   };
   render() {
-    const isAuth = JSON.parse(localStorage.getItem("isAuth"));
-    if (isAuth) {
-      return <Redirect to="/public" />;
-    } else {
-      return (
-        <section className="login">
-          <div className="container">
-            <div className="login__content">
-              <form className="login__form">
-                <p className="login__title">Введите данные</p>
-                <label htmlFor="login">Логин</label>
-                <label htmlFor="password">Пароль</label>
-                <input type="text" name="login" />
-                <input type="password" name="password" />
-                <button onClick={this.addLogin}>Log in</button>
-              </form>
-            </div>
-          </div>
-        </section>
-      );
-    }
+    return (
+      <section className={styles.login}>
+        <div onSubmit={this.handleSubmit} className={styles.login__content}>
+          <img className={styles.login__icon} src={logo} alt="SML logo" />
+          <form className={styles.login__form}>
+            <p className={styles.login__title}>Sign in</p>
+            <label htmlFor="email" className={styles.login__label}>
+              Email
+            </label>
+            <input
+              type="email"
+              name="email"
+              className={styles.login__input}
+              ref={this.loginRef}
+            />
+            <label htmlFor="password" className={styles.login__label}>
+              Password
+            </label>
+            <input
+              type="password"
+              name="password"
+              className={styles.login__input}
+            />
+            <button className={styles.login__button}>Login</button>
+          </form>
+        </div>
+      </section>
+    );
   }
 }
 
-export default Login;
+export default connect(
+  mapStateToProp,
+  mapDispatchToProps
+)(Login);

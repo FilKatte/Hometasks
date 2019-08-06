@@ -1,3 +1,47 @@
-li {
-  list-style-type: none;
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  font-family: "robotoregular", Arial, Helvetica, sans-serif;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  padding: 0;
+  outline: none;
+  background-color: transparent;
+  border: none;
+}
+
+input {
+  border: none;
+}
+
+.container {
+  width: 1325px;
+  height: 100%;
+  margin: 0 auto 0 auto;
+}
+
+.hidden {
+  overflow: hidden;
 }
