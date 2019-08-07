@@ -44,6 +44,7 @@ class Login extends React.Component {
 
   changeInput = e => {
     const target = e.target;
+
     this.setState({
       values: { ...this.state.values, ...{ [target.name]: target.value } },
       errors: {}
@@ -63,21 +64,25 @@ class Login extends React.Component {
       }
     });
 
-    this.setState({
-      errors,
-      isValidate: Object.keys(errors).length === 0
-    });
+    this.setState(
+      {
+        errors,
+        isValidate: Object.keys(errors).length === 0
+      },
+      () => {
+        const { logIn } = this.props;
+        const { isValidate } = this.state;
 
-    const { logIn } = this.props;
-    const { isValidate } = this.state;
-
-    if (isValidate) {
-      logIn();
-    }
+        if (isValidate) {
+          logIn();
+        }
+      }
+    );
   };
 
   render() {
     const { values, errors } = this.state;
+
     return (
       <section className={styles.login}>
         <div onSubmit={this.handleSubmit} className={styles.login__content}>
