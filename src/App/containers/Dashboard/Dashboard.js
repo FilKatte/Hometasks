@@ -1,33 +1,15 @@
 import React from "react";
-import { connect } from "react-redux";
-import { logOut } from "../../store/duck";
-
-const mapStateToProp = state => {
-  return {};
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    logOut: () => dispatch(logOut())
-  };
-};
+import styles from "./Dashboard.module.css";
+import Header from "./components/Header";
 
 class Dashboard extends React.Component {
-  exitLogin = () => {
-    const { logOut } = this.props;
-    logOut();
-  };
   render() {
     return (
-      <section>
-        <p>Главная</p>
-        <button onClick={this.exitLogin}>X</button>
-      </section>
+      <div className={styles.wrapper}>
+        <Header />
+      </div>
     );
   }
 }
 
-export default connect(
-  mapStateToProp,
-  mapDispatchToProps
-)(Dashboard);
+export default Dashboard;
