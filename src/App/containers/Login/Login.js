@@ -1,11 +1,15 @@
 import React from "react";
 import styles from "./Login.module.css";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 import { logIn } from "../../store/duck";
+import { isLoginSelector } from "../../store/selectors";
 import logo from "./assets/logo.svg";
 
 const mapStateToProp = state => {
-  return {};
+  return {
+    isLogin: isLoginSelector(state)
+  };
 };
 
 const mapDispatchToProps = dispatch => {
@@ -82,7 +86,12 @@ class Login extends React.Component {
 
   render() {
     const { values, errors } = this.state;
-
+    const { isLogin } = this.props;
+    console.log("login");
+    if (isLogin) {
+      console.log("redirect");
+      return <Redirect path="/login" to="/dashboard/allNews" />;
+    }
     return (
       <section className={styles.login}>
         <div onSubmit={this.handleSubmit} className={styles.login__content}>

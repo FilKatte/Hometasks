@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./Menu.module.css";
 import networks from "../assets/networks.png";
+import { NavLink } from "react-router-dom";
 
 const monthsList = [
   { id: 1, name: "Январь" },
@@ -23,9 +24,9 @@ const years = [
 ];
 
 const electList = [
-  { id: 1, text: "Все новости" },
-  { id: 2, text: "Избранное" },
-  { id: 3, text: "Важное" }
+  { id: 1, text: "Все новости", to: "/dashboard/allNews" },
+  { id: 2, text: "Избранное", to: "/dashboard/elect" },
+  { id: 3, text: "Важное", to: "/dashboard/important" }
 ];
 
 class Menu extends React.Component {
@@ -56,9 +57,9 @@ class Menu extends React.Component {
             <ul className={styles.elect__list}>
               {electList.map(electObj => (
                 <li className={styles.elect__item} key={electObj.id}>
-                  <a className={styles.elect__link} href="#">
+                  <NavLink to={electObj.to} className={styles.elect__link}>
                     {electObj.text}
-                  </a>
+                  </NavLink>
                 </li>
               ))}
             </ul>

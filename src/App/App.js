@@ -5,7 +5,8 @@ import { isLoginSelector } from "./store/selectors";
 import { connect } from "react-redux";
 import { checkIsLogin } from "./store/duck";
 import Login from "./containers/Login";
-import Dashboard from "./containers/Dashboard";
+// import Dashboard from "./containers/Dashboard";
+import AppRouter from "./components/AppRouter";
 
 const mapStateToProps = state => {
   return {
@@ -27,59 +28,32 @@ class App extends React.Component {
 
   render() {
     const { isLogin } = this.props;
-
     return (
       <BrowserRouter>
         <Switch>
-          <PublicRoute
-            restricted={true}
-            isLogin={isLogin}
-            component={Login}
-            path="/login"
-            exact
-          />
+          <Route exact path="/login" component={Login} />
           <PrivateRoute
             path="/dashboard"
-            isLogin={isLogin}
-            component={Dashboard}
+            permited={isLogin}
+            component={AppRouter}
           />
-          <Redirect path="/dashboard*" to="/dashboard/news" />
+          <Redirect to="/login" />
         </Switch>
       </BrowserRouter>
     );
   }
 }
 
-const PrivateRoute = ({ component: Component, isLogin, ...rest }) => (
-  <Route
-    {...rest}
-    render={props =>
-      isLogin ? <Component {...props} /> : <Redirect to="/login" />
-    }
-  />
-);
-
-const PublicRoute = ({
-  component: Component,
-  restricted,
-  isLogin,
-  ...rest
-}) => {
-  return (
-    <Route
-      {...rest}
-      render={props =>
-        isLogin && restricted ? (
-          <Redirect to="/dashboard" />
-        ) : (
-          <Component {...props} />
-        )
-      }
-    />
-  );
-};
-
 export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(App);
+
+const PrivateRoute = ({ component: Component, permited, ...rest }) => (
+  <Route
+    {...rest}
+    render={props =>
+      permited ? <Component {...props} /> : <Redirect to="/login" />
+    }
+  />
+);
