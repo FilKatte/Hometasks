@@ -99,9 +99,7 @@ class Menu extends React.Component {
 
           <div className={styles.info}>
             <p className={styles.info__text}>
-              E-mail для отправки идей, инициатив, критики и пожеланий
-            </p>
-            <p className={styles.info__text}>
+              E-mail для отправки идей, инициатив, критики и пожеланий{" "}
               <a className={styles.info__link} href="whynot@smedialink.com">
                 whynot@smedialink.com
               </a>

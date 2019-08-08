@@ -28,15 +28,16 @@ class App extends React.Component {
 
   render() {
     const { isLogin } = this.props;
+
     return (
       <BrowserRouter>
         <Switch>
-          <Route exact path="/login" component={Login} />
           <PrivateRoute
             path="/dashboard"
             permited={isLogin}
             component={AppRouter}
           />
+          <Route exact path="/login" component={Login} />
           <Redirect to="/login" />
         </Switch>
       </BrowserRouter>

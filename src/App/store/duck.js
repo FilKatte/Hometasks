@@ -15,7 +15,7 @@ export const logOut = () => ({
   type: constants.LOG_OUT
 });
 
-const isLogin = (state = false, action) => {
+const isLogin = (state = isAuth, action) => {
   switch (action.type) {
     case constants.CHECK_IS_LOGIN:
       if (isAuth) {

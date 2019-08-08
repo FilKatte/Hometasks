@@ -87,9 +87,8 @@ class Login extends React.Component {
   render() {
     const { values, errors } = this.state;
     const { isLogin } = this.props;
-    console.log("login");
+
     if (isLogin) {
-      console.log("redirect");
       return <Redirect path="/login" to="/dashboard/allNews" />;
     }
     return (
