@@ -43,7 +43,7 @@ class App extends React.Component {
             isLogin={isLogin}
             component={Dashboard}
           />
-          <Redirect to="/dashboard" />
+          <Redirect path="/dashboard*" to="/dashboard/news" />
         </Switch>
       </BrowserRouter>
     );

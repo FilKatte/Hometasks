@@ -39,9 +39,6 @@ class Header extends React.Component {
             <div className={className} onClick={this.showMenu}>
               <span className={styles.burger__line} />
             </div>
-
-            {isOpen && <Menu />}
-
             <div className={styles.logo}>
               <a className={styles.logo_link} href="#">
                 <img className={styles.logo__icon} src={logo} alt="SML logo" />
@@ -53,6 +50,7 @@ class Header extends React.Component {
 
           <Avatar logOut={logOut} />
         </div>
+        {isOpen && <Menu />}
       </header>
     );
   }
