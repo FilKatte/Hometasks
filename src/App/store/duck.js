@@ -8,6 +8,9 @@ export const increment = () => ({
 export const decrement = () => ({
   type: constants.DECREMENT
 });
+export const onIncrementAsync = () => ({
+  type: constants.INCREMENT_ASYNC
+});
 
 const counter = (state = 0, action) => {
   switch (action.type) {
