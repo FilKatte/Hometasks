@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { increment } from "./store/duck";
 import CurrentFilm from "./containers/CurrentFilm";
 import Message from "./containers/Message";
+import { helloSaga } from "../sagas";
 
 const mapStateToProp = state => {
   return {
@@ -22,7 +23,7 @@ class App extends React.Component {
     const { app, increment } = this.props;
     return (
       <div>
-        <p>{app.counter}</p>
+        <p>Counter {app.counter}</p>
         <button onClick={() => increment()}>Прибавить единичку</button>
         <hr />
 
