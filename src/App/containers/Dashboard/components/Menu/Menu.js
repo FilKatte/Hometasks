@@ -57,7 +57,11 @@ class Menu extends React.Component {
             <ul className={styles.elect__list}>
               {electList.map(electObj => (
                 <li className={styles.elect__item} key={electObj.id}>
-                  <NavLink to={electObj.to} className={styles.elect__link}>
+                  <NavLink
+                    to={electObj.to}
+                    className={styles.elect__link}
+                    activeClassName={styles.elect__link__active}
+                  >
                     {electObj.text}
                   </NavLink>
                 </li>
@@ -92,9 +96,7 @@ class Menu extends React.Component {
           </div>
 
           <div className={styles.wombat}>
-            <a className={styles.wombat__link} href="#">
-              Wombat
-            </a>
+            <p className={styles.wombat__link}>Wombat</p>
           </div>
 
           <div className={styles.info}>

@@ -5,6 +5,7 @@ import { Redirect } from "react-router-dom";
 import { logIn } from "../../store/duck";
 import { isLoginSelector } from "../../store/selectors";
 import logo from "./assets/logo.svg";
+import classNames from "classnames";
 
 const mapStateToProp = state => {
   return {
@@ -87,6 +88,12 @@ class Login extends React.Component {
   render() {
     const { values, errors } = this.state;
     const { isLogin } = this.props;
+    const classNameLoginInput = errors.login
+      ? classNames(styles.login__input, styles.login__input__active)
+      : classNames(styles.login__input);
+    const classNamePasswordInput = errors.password
+      ? classNames(styles.login__input, styles.login__input__active)
+      : classNames(styles.login__input);
 
     if (isLogin) {
       return <Redirect path="/login" to="/dashboard/allNews" />;
@@ -106,7 +113,7 @@ class Login extends React.Component {
                 name="login"
                 value={values["login"]}
                 onChange={this.changeInput}
-                className={styles.login__input}
+                className={classNameLoginInput}
                 ref={this.loginRef}
                 placeholder=" "
               />
@@ -121,7 +128,7 @@ class Login extends React.Component {
                 name="password"
                 value={values["lastname"]}
                 onChange={this.changeInput}
-                className={styles.login__input}
+                className={classNamePasswordInput}
                 placeholder=" "
               />
               <span className={styles.login__error}>{errors["password"]}</span>

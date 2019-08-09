@@ -40,9 +40,9 @@ class Header extends React.Component {
               <span className={styles.burger__line} />
             </div>
             <div className={styles.logo}>
-              <a className={styles.logo_link} href="#">
+              <p className={styles.logo_link}>
                 <img className={styles.logo__icon} src={logo} alt="SML logo" />
-              </a>
+              </p>
             </div>
 
             <h1 className={styles.header__title}>Еженедельный дайджест</h1>

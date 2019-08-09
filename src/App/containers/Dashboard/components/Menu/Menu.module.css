@@ -2,6 +2,8 @@
   position: absolute;
   left: 0;
   top: 90px;
+  height: calc(100vh - 90px);
+  overflow-y: auto; /*вертикальный скрол*/
 }
 
 .nav__content {
@@ -25,6 +27,11 @@
   line-height: 1.33;
   letter-spacing: 0.75px;
   color: #2e3c3f;
+  transition: 0.3s;
+}
+
+.elect__link__active {
+  color: #ff256e;
 }
 
 .years {
@@ -75,8 +82,7 @@
 }
 
 .months__item:first-child,
-.years__item:first-child .years__text,
-.elect__item:first-child .elect__link {
+.years__item:first-child .years__text {
   color: #ff256e;
 }
 
@@ -92,6 +98,7 @@
   line-height: 1.33;
   letter-spacing: 0.75px;
   color: #2e3c3f;
+  cursor: pointer;
 }
 
 .info {
