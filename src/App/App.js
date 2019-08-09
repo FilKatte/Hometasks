@@ -22,12 +22,13 @@ class App extends React.Component {
     const { app, increment } = this.props;
     return (
       <div>
+        <p>{app.counter}</p>
+        <button onClick={() => increment()}>Прибавить единичку</button>
+        <hr />
+
         <Message />
         <hr />
         <CurrentFilm />
-        <hr />
-        <p>{app.counter}</p>
-        <button onClick={() => increment()}>Прибавить единичку</button>
       </div>
     );
   }
