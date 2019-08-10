@@ -6,7 +6,7 @@ const delay = ms => new Promise(res => setTimeout(res, ms));
 // Наша Сага-рабочий (worker Saga): будет выполнять асинхронную задачу увеличения счётчика
 export function* incrementAsync() {
   yield delay(1000);
-  yield put({ type: INCREMENT });
+  yield put({ type: INCREMENT }); //отправляет action в хранилище
 }
 
 // Наша Сага-наблюдатель: создаёт новые incrementAsync задачи на каждом INCREMENT_ASYNC
