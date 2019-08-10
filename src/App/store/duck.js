@@ -23,13 +23,8 @@ const counter = (state = 0, action) => {
   }
 };
 
-const counterSecond = (state = 10, action) => {
-  return state;
-};
-
 const appReducers = combineReducers({
-  counter,
-  counterSecond
+  counter
 });
 
 export default appReducers;

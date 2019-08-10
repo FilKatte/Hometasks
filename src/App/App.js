@@ -21,7 +21,7 @@ const mapDispatchToProps = dispatch => {
 
 class App extends React.Component {
   render() {
-    const { app, increment, decrement } = this.props;
+    const { app, increment, decrement, onIncrementAsync } = this.props;
     return (
       <div>
         <p>Counter {app.counter}</p>
