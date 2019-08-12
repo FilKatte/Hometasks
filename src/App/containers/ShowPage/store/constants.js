@@ -1,0 +1,5 @@
+const STORE_TYPE = "show";
+
+export const SHOW_REQUEST = `${STORE_TYPE}/SHOW_REQUEST`;
+export const SHOW_SUCCESS = `${STORE_TYPE}/SHOW_SUCCESS`;
+export const SHOW_FAILURE = `${STORE_TYPE}/SHOW_FAILURE`;

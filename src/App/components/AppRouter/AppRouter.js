@@ -2,6 +2,7 @@ import React, { PureComponent } from "react";
 //import Header from "../../containers/Dashboard/components/Header";
 import Search from "../../containers/Search";
 import { withRouter, Redirect, Switch, Route } from "react-router-dom";
+import ShowPage from "../../containers/ShowPage"
 //import styles from "./AppRouter.module.css";
 
 class AppRouter extends PureComponent {
@@ -10,7 +11,8 @@ class AppRouter extends PureComponent {
       <div>
         <Switch>
           <Route exact path="/search" component={Search} />
-          <Redirect path="/*" to="/search" />
+          <Route path="/shows" component={ShowPage}/>
+          <Redirect exact path="/" to="/search" />
        </Switch>
       </div>
     );
