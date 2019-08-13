@@ -1,14 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
 import { searchRequest } from "./store/duck";
-import { searchSuccessSelector,searchValueSelector } from "./store/selectors";
+import { searchSuccessSelector,searchValueSelector,resultSuccessSelector } from "./store/selectors";
 import ShowPreview from "../ShowPreview";
 import styles from "./Search.module.css";
 
 const mapStateToProp = state => {
   return {
     success : searchSuccessSelector(state),
-    loading : searchValueSelector(state)
+    loading : searchValueSelector(state),
+    result : resultSuccessSelector(state)
   };
 };
 
@@ -31,11 +32,12 @@ class Search extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
     this.props.searchRequest(this.state.value);
+    this.setState({ value: "" });
   };
  
   render() {
   const {value} = this.state;
-  const {success,loading} = this.props;
+  const {success,loading,result} = this.props;
     return (
       <div className={styles.search}>
         <form onSubmit={this.handleSubmit} className={styles.search__form}>
@@ -43,7 +45,7 @@ class Search extends React.Component {
 	        <button className={styles.search__button}>Найти</button>
 	      </form>
         {loading && <div>Louding</div>}
-        <ShowPreview data={success}/>
+        <ShowPreview data={success} result={result}/>
       </div>
       
     );

@@ -23,15 +23,20 @@ import * as constants from "./constants";
     new Map([
       [searchRequest, (state, action) => ({
           ...state,
-          loading: true
+          loading: true,
+          result: false
         })
       ], 
 
-       [searchSuccess, (state, action) => ({
+       [searchSuccess, (state, action) => {
+         if (action.payload.length===0) 
+          state.result = true
+        
+        return {
         ...state,
           success: action.payload,
-          loading: false
-       })
+          loading: false,
+       }}
        ], 
 
       [searchFailure, (state, action) => ({
@@ -42,7 +47,7 @@ import * as constants from "./constants";
     
       ],
 ]),
-{ loading: false, success: [], failure: "" }
+{ loading: false, success: [], failure: "", result: false }
 );
 
 export default searchReducers;

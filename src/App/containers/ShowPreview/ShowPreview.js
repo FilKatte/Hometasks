@@ -5,11 +5,11 @@ import styles from "./ShowPreview.module.css";
 class ShowPreview extends PureComponent {
  
   render() {
-      const {data} = this.props;
+      const {data,result} = this.props;
     
     return (
       <div>
-        {Boolean(data.length) && data.map(dataObj => (
+        {(result) ? "Не найдено": data.map(dataObj => (
           <div className={styles.showPreview}  key={dataObj.id}>
            
             <div className={styles.showPreview__title}>
@@ -17,7 +17,7 @@ class ShowPreview extends PureComponent {
             </div>
            
             <div className={styles.showPreview__icon}>
-                <img src={dataObj.image.medium} alt="Cover" />
+                <img src={dataObj.image && dataObj.image.medium} alt="Cover" />
              </div>
 
               <div

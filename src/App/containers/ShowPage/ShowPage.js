@@ -39,7 +39,7 @@ class ShowPage extends React.Component {
            </div>
           
            <div>
-               <img src={data.image.medium} alt="Cover" />
+               <img src={data.image && data.image.medium} alt="Cover" />
             </div>
 
              <div
