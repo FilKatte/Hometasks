@@ -2,7 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import { searchRequest } from "./store/duck";
 import { searchSuccessSelector,searchValueSelector } from "./store/selectors";
-import ShowPreview from "../ShowPreview"
+import ShowPreview from "../ShowPreview";
+import styles from "./Search.module.css";
 
 const mapStateToProp = state => {
   return {
@@ -36,10 +37,10 @@ class Search extends React.Component {
   const {value} = this.state;
   const {success,loading} = this.props;
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-	        <input onChange={this.handleChange} value={value} type="text" name="query" placeholder="Название сериала"/>
-	        <button>Найти</button>
+      <div className={styles.search}>
+        <form onSubmit={this.handleSubmit} className={styles.search__form}>
+	        <input onChange={this.handleChange} value={value} className={styles.search__input} type="text" name="query" placeholder="Название сериала"/>
+	        <button className={styles.search__button}>Найти</button>
 	      </form>
         {loading && <div>Louding</div>}
         <ShowPreview data={success}/>

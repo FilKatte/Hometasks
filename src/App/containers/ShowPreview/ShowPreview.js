@@ -1,5 +1,6 @@
 import React, {PureComponent} from "react";
 import {Link} from 'react-router-dom';
+import styles from "./ShowPreview.module.css";
 
 class ShowPreview extends PureComponent {
  
@@ -9,18 +10,18 @@ class ShowPreview extends PureComponent {
     return (
       <div>
         {Boolean(data.length) && data.map(dataObj => (
-          <div className="serial"  key={dataObj.id}>
+          <div className={styles.showPreview}  key={dataObj.id}>
            
-            <div className="name">
-              <Link to={{pathname:`/shows/${dataObj.id}`, id: dataObj.id}}>{dataObj.name}</Link>
+            <div className={styles.showPreview__title}>
+              <Link to={{pathname:`/shows/${dataObj.id}`, id: dataObj.id}} className={styles.showPreview__link}>{dataObj.name}</Link>
             </div>
            
-            <div className="icon">
+            <div className={styles.showPreview__icon}>
                 <img src={dataObj.image.medium} alt="Cover" />
              </div>
 
               <div
-                className="summary"
+               className={styles.showPreview__summary}
                 dangerouslySetInnerHTML={{ __html: dataObj.summary }}
               />
             

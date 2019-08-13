@@ -1,0 +1,28 @@
+.showPage{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+}
+
+.showPage__title{
+    margin-bottom: 15px;
+}
+
+.showPage__summary{
+    text-align: center;
+    font-size: 16px;
+    font-family: Arial;
+}
+
+.showPage__person{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 10px 0;
+}
+
+.person__title{
+    text-align: center;
+    margin: 10px 0;
+}

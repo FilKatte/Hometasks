@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { showRequest } from "./store/duck";
 import { showSuccessSelector,showValueSelector } from "./store/selectors";
+import styles from "./ShowPage.module.css";
 
 const mapStateToProp = state => {
   return {
@@ -31,36 +32,36 @@ class ShowPage extends React.Component {
       <div>
         {loading && <div>Louding</div>}
         {Boolean(Object.keys(data).length) && (
-           <div className="serial">
+           <div className={styles.showPage}>
            
-           <div className="name">
+           <div className={styles.showPage__title}>
              {data.name}
            </div>
           
-           <div className="icon">
+           <div>
                <img src={data.image.medium} alt="Cover" />
             </div>
 
              <div
-               className="summary"
+               className={styles.showPage__summary}
                dangerouslySetInnerHTML={{ __html: data.summary }}
              />
 
-            
+            <div className={styles.showPage__person}>
              {data._embedded.cast.map(dataObj => (
-              <div key={dataObj.person.name}>
+              <div key={dataObj.person.name} >
 
-                <div >
+                <div  className={styles.person__title}>
                 {dataObj.person.name}
               </div>
            
-            <div className="icon">
+            <div>
                 <img src={dataObj.person.image && dataObj.person.image.medium} alt="Cover" />
              </div>
 
-            
           </div>
           ))} 
+           </div>
            
          </div>
           )}
