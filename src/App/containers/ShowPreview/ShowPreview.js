@@ -8,11 +8,11 @@ class ShowPreview extends PureComponent {
     
     return (
       <div>
-        {data.length && data.map(dataObj => (
+        {Boolean(data.length) && data.map(dataObj => (
           <div className="serial"  key={dataObj.id}>
            
             <div className="name">
-              <Link to={{pathname:"/shows", id: dataObj.id}}>{dataObj.name}</Link>
+              <Link to={{pathname:`/shows/${dataObj.id}`, id: dataObj.id}}>{dataObj.name}</Link>
             </div>
            
             <div className="icon">

@@ -1,11 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
 import { showRequest } from "./store/duck";
-import { showSuccessSelector } from "./store/selectors";
+import { showSuccessSelector,showValueSelector } from "./store/selectors";
 
 const mapStateToProp = state => {
   return {
-    data : showSuccessSelector(state)
+    data : showSuccessSelector(state),
+    loading : showValueSelector(state)
   };
 };
 
@@ -24,10 +25,11 @@ class ShowPage extends React.Component {
   }
  
   render() {
-  const {data} = this.props;
+    const {data,loading} = this.props;
   console.log(data)
     return (
       <div>
+        {loading && <div>Louding</div>}
         {Boolean(Object.keys(data).length) && (
            <div className="serial">
            
@@ -53,7 +55,7 @@ class ShowPage extends React.Component {
               </div>
            
             <div className="icon">
-                <img src={dataObj.person.image.medium} alt="Cover" />
+                <img src={dataObj.person.image && dataObj.person.image.medium} alt="Cover" />
              </div>
 
             

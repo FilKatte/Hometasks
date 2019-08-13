@@ -1,5 +1,4 @@
-import { combineReducers } from "redux";
-import { createAction, handleAction } from 'redux-actions';
+import { createAction,handleActions } from 'redux-actions';
 import * as constants from "./constants";
 
 // export const searchRequest = query => ({
@@ -15,29 +14,35 @@ import * as constants from "./constants";
 //         return state;
 //     }
 //   };
-  export const searchRequest = createAction(constants.SEARCH_REQUEST);
+  export const searchRequest = createAction(constants.SEARCH_REQUEST, data => data);
   export const searchSuccess = createAction(constants.SEARCH_SUCCESS, data => data);
   export const searchFailure = createAction(constants.SEARCH_FAILURE, data => data);
 
 
-  const search = handleAction(
-    searchRequest,
-    (state, action) => state,
-    true
-   );
+   const searchReducers = handleActions(
+    new Map([
+      [searchRequest, (state, action) => ({
+          ...state,
+          loading: true
+        })
+      ], 
 
-   const success = handleAction(
-    searchSuccess,
-    (state, action) => action.payload,
-    {}
-   );
+       [searchSuccess, (state, action) => ({
+        ...state,
+          success: action.payload,
+          loading: false
+       })
+       ], 
 
-   const failure = handleAction(
-    searchFailure,
-    (state, action) => action.payload,
-    ""
-   );
-
-const searchReducers = combineReducers({search,success,failure});
+      [searchFailure, (state, action) => ({
+        ...state,
+          failure: action.payload,
+          loading: false
+       })
+    
+      ],
+]),
+{ loading: false, success: [], failure: "" }
+);
 
 export default searchReducers;
