@@ -1,26 +1,29 @@
 import React from "react";
 import { connect } from "react-redux";
 import { searchRequest } from "./store/duck";
-import { searchSuccessSelector,searchValueSelector,resultSuccessSelector } from "./store/selectors";
+import {
+  searchSuccessSelector,
+  searchValueSelector,
+  successNothingSelector
+} from "./store/selectors";
 import ShowPreview from "../ShowPreview";
 import styles from "./Search.module.css";
 
 const mapStateToProp = state => {
   return {
-    success : searchSuccessSelector(state),
-    loading : searchValueSelector(state),
-    result : resultSuccessSelector(state)
+    success: searchSuccessSelector(state),
+    loading: searchValueSelector(state),
+    successNothing: successNothingSelector(state)
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    searchRequest: (query) => dispatch(searchRequest(query))
+    searchRequest: query => dispatch(searchRequest(query))
   };
 };
 
 class Search extends React.Component {
-  
   state = {
     value: ""
   };
@@ -30,24 +33,32 @@ class Search extends React.Component {
   };
 
   handleSubmit = event => {
+    const { searchRequest } = this.props;
+    const { value } = this.state;
     event.preventDefault();
-    this.props.searchRequest(this.state.value);
+    searchRequest(value);
     this.setState({ value: "" });
   };
- 
+
   render() {
-  const {value} = this.state;
-  const {success,loading,result} = this.props;
+    const { value } = this.state;
+    const { success, loading, successNothing } = this.props;
     return (
       <div className={styles.search}>
         <form onSubmit={this.handleSubmit} className={styles.search__form}>
-	        <input onChange={this.handleChange} value={value} className={styles.search__input} type="text" name="query" placeholder="Название сериала"/>
-	        <button className={styles.search__button}>Найти</button>
-	      </form>
-        {loading && <div>Louding</div>}
-        <ShowPreview data={success} result={result}/>
+          <input
+            onChange={this.handleChange}
+            value={value}
+            className={styles.search__input}
+            type="text"
+            name="query"
+            placeholder="Название сериала"
+          />
+          <button className={styles.search__button}>Найти</button>
+        </form>
+        {loading && <div>Loading</div>}
+        <ShowPreview data={success} successNothing={successNothing} />
       </div>
-      
     );
   }
 }
