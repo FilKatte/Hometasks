@@ -43,7 +43,12 @@ class Search extends React.Component {
   render() {
     const { value } = this.state;
     const { success, loading, successNothing } = this.props;
-    return (
+    return loading ? (
+      <div className={styles.search__loading}>
+        <div className={styles.search__loader} />
+        <p className={styles.loading__text}>Loading</p>
+      </div>
+    ) : (
       <div className={styles.search}>
         <form onSubmit={this.handleSubmit} className={styles.search__form}>
           <input
@@ -56,7 +61,6 @@ class Search extends React.Component {
           />
           <button className={styles.search__button}>Найти</button>
         </form>
-        {loading && <div>Loading</div>}
         <ShowPreview data={success} successNothing={successNothing} />
       </div>
     );

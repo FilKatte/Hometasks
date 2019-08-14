@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { showRequest } from "./store/duck";
 import { showSuccessSelector, showValueSelector } from "./store/selectors";
 import styles from "./ShowPage.module.css";
+import avatar from "./assets/default_avatar.png";
+import moment from "moment";
 
 const isEmpty = require("lodash/isEmpty");
 
@@ -30,33 +32,71 @@ class ShowPage extends React.Component {
 
   render() {
     const { data, loading } = this.props;
-    return (
+    return loading ? (
+      <div className={styles.search__loading}>
+        <div className={styles.search__loader} />
+        <p className={styles.loading__text}>Loading</p>
+      </div>
+    ) : (
       <div>
-        {loading && <div>Loading</div>}
         {!isEmpty(data) && (
           <div className={styles.showPage}>
-            <div className={styles.showPage__title}>{data.name}</div>
+            <div className={styles.showPage__info}>
+              <div className={styles.info__image}>
+                <img src={data.image && data.image.medium} alt="Cover" />
+              </div>
 
-            <div>
-              <img src={data.image && data.image.medium} alt="Cover" />
+              <ul className={styles.info__list}>
+                <li className={styles.info__item}>
+                  <p className={styles.info__text}>Name</p>
+                  <p className={styles.info__data}>{data.name}</p>
+                </li>
+
+                <li className={styles.info__item}>
+                  <p className={styles.info__text}>Year</p>
+                  <p className={styles.info__data}>
+                    {moment(data.premiered).format("YYYY")}
+                  </p>
+                </li>
+
+                <li className={styles.info__item}>
+                  <p className={styles.info__text}>Country</p>
+                  <p className={styles.info__data}>
+                    {data.network && data.network.country.name}
+                  </p>
+                </li>
+
+                <li className={styles.info__item}>
+                  <p className={styles.info__text}>Genres</p>
+                  <p className={styles.info__data}>{data.genres.join(", ")}</p>
+                </li>
+              </ul>
             </div>
 
-            <div
-              className={styles.showPage__summary}
-              dangerouslySetInnerHTML={{ __html: data.summary }}
-            />
+            <div className={styles.showPage__summary}>
+              <p className={styles.summary__title}>About</p>
+              <div
+                className={styles.summary__text}
+                dangerouslySetInnerHTML={{ __html: data.summary }}
+              />
+            </div>
 
-            <div className={styles.showPage__person}>
-              {data._embedded.cast.map(dataObj => (
-                <div key={dataObj.person.name}>
-                  <div className={styles.person__title}>
+            <div className={styles.showPage__personList}>
+              {data._embedded.cast.map((dataObj, id) => (
+                <div key={id} className={styles.personList_item}>
+                  <div className={styles.personList__title}>
                     {dataObj.person.name}
                   </div>
 
                   <div>
                     <img
-                      src={dataObj.person.image && dataObj.person.image.medium}
+                      src={
+                        dataObj.person.image
+                          ? dataObj.person.image.medium
+                          : avatar
+                      }
                       alt="Cover"
+                      className={styles.personList__img}
                     />
                   </div>
                 </div>

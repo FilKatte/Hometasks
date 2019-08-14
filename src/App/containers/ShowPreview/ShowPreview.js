@@ -1,30 +1,33 @@
 import React, { PureComponent } from "react";
 import { NavLink } from "react-router-dom";
 import styles from "./ShowPreview.module.css";
+import film from "./assets/default__image__film.png";
 
 class ShowPreview extends PureComponent {
   render() {
     const { data, successNothing } = this.props;
 
     return (
-      <div>
-        {successNothing
-          ? "Не найдено"
-          : data.map(dataObj => (
-              <div className={styles.showPreview} key={dataObj.id}>
-                <div className={styles.showPreview__title}>
-                  <NavLink
-                    to={`/shows/${dataObj.id}`}
-                    className={styles.showPreview__link}
-                  >
-                    {dataObj.name}
-                  </NavLink>
-                </div>
+      <div className={styles.showPreview}>
+        {successNothing ? (
+          <p className={styles.showPreview__nothing}>
+            По запросу ничего не найдено
+          </p>
+        ) : (
+          data.map(dataObj => (
+            <NavLink
+              to={`/shows/${dataObj.id}`}
+              className={styles.showPreview__link}
+              key={dataObj.id}
+            >
+              <div className={styles.showPreview__Show}>
+                <div className={styles.showPreview__title}>{dataObj.name}</div>
 
-                <div className={styles.showPreview__icon}>
+                <div className={styles.showPreview__image}>
                   <img
-                    src={dataObj.image && dataObj.image.medium}
+                    src={dataObj.image ? dataObj.image.medium : film}
                     alt="Cover"
+                    className={styles.showPreview__icon}
                   />
                 </div>
 
@@ -33,7 +36,9 @@ class ShowPreview extends PureComponent {
                   dangerouslySetInnerHTML={{ __html: dataObj.summary }}
                 />
               </div>
-            ))}
+            </NavLink>
+          ))
+        )}
       </div>
     );
   }
