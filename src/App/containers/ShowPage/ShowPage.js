@@ -73,13 +73,15 @@ class ShowPage extends React.Component {
               </ul>
             </div>
 
-            <div className={styles.showPage__summary}>
-              <p className={styles.summary__title}>About</p>
-              <div
-                className={styles.summary__text}
-                dangerouslySetInnerHTML={{ __html: data.summary }}
-              />
-            </div>
+            {data.summary && (
+              <div className={styles.showPage__summary}>
+                <p className={styles.summary__title}>About</p>
+                <div
+                  className={styles.summary__text}
+                  dangerouslySetInnerHTML={{ __html: data.summary }}
+                />
+              </div>
+            )}
 
             <div className={styles.showPage__personList}>
               {data._embedded.cast.map((dataObj, id) => (
