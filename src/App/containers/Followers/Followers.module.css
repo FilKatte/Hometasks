@@ -15,14 +15,28 @@
 
 .personList__title {
   text-align: center;
-  margin-bottom: 15px;
+  transition: 0.3s;
+
   color: #dcdcdc;
 }
 
 .personList__img {
+  margin-bottom: 15px;
+}
+
+.personList__icon {
   height: 150px;
   width: 150px;
   border-radius: 50%;
+  transition: 0.3s;
+}
+
+.personList_item:hover .personList__icon {
+  border-radius: 0;
+}
+
+.personList_item:hover .personList__title {
+  color: #3ac5c1;
 }
 
 .loading__text {

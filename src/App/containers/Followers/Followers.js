@@ -38,15 +38,15 @@ class Followers extends React.Component {
                 className={styles.personList_item}
                 onClick={e => this.handleSubmit(e, dataObj.login)}
               >
-                <div className={styles.personList__title}>{dataObj.login}</div>
-
-                <div>
+                <div className={styles.personList__img}>
                   <img
                     src={dataObj.avatar_url ? dataObj.avatar_url : avatar}
                     alt="Cover"
-                    className={styles.personList__img}
+                    className={styles.personList__icon}
                   />
                 </div>
+
+                <div className={styles.personList__title}>{dataObj.login}</div>
               </div>
             ))}
           </div>
