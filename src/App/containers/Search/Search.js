@@ -42,6 +42,7 @@ class Search extends React.Component {
 
   render() {
     const { value } = this.state;
+    console.log("SEARCH WTF!");
     const { success, loading, successNothing } = this.props;
     return loading ? (
       <div className={styles.search__loading}>
