@@ -7,6 +7,7 @@ import styles from "./AppRouter.module.css";
 
 class AppRouter extends PureComponent {
   render() {
+    console.log("ROUTER");
     return (
       <div className={styles.wrapper}>
         <Header />
