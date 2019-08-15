@@ -1,72 +1,12 @@
-.showPage {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 20px;
-  width: 750px;
+.followers {
+  width: 50vw;
   margin: 0 auto;
-  color: #c8c8c8;
-  font-family: Arial;
 }
 
-.showPage__info {
-  display: flex;
-  justify-content: center;
-  margin: 0 0 30px 0;
-}
-
-.info__image {
-  margin: 0 30px 0 0;
-}
-
-.info__list {
-  width: 500px;
-}
-
-.info__item {
-  display: flex;
-  padding: 10px;
-  background-color: #303030;
-  font-family: Arial;
-  font-size: 16px;
-}
-
-.info__item:nth-child(even) {
-  display: flex;
-  background-color: #111;
-}
-
-.info__text {
-  width: 100px;
-}
-
-.info__data {
-  color: #dcdcdc;
-}
-
-.showPage__summary {
-  background-color: #222;
-  padding: 20px;
-  margin-bottom: 30px;
-}
-
-.summary__title {
-  text-align: center;
-  font-size: 20px;
-  margin: 0 0 20px 0;
-  color: #dcdcdc;
-}
-
-.summary__text {
-  text-align: justify;
-  text-indent: 20px;
-  font-size: 16px;
-  line-height: 1.7;
-}
-
-.showPage__personList {
+.followers__personList {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .personList_item {
@@ -80,8 +20,17 @@
 }
 
 .personList__img {
-  height: 300px;
-  width: 220px;
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+}
+
+.loading__text {
+  margin: 30px auto;
+  font-size: 20px;
+  font-family: Arial;
+  text-align: center;
+  color: #c8c8c8;
 }
 
 .search__loading {
@@ -130,12 +79,4 @@
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
-}
-
-.loading__text {
-  margin: 30px auto;
-  font-size: 20px;
-  font-family: Arial;
-  text-align: center;
-  color: #c8c8c8;
 }

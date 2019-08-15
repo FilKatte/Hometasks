@@ -1,25 +1,38 @@
 import React from "react";
 import { connect } from "react-redux";
 import { searchRequest } from "./store/duck";
+import { followersRequest } from "../Followers/store/duck";
+import {
+  followersLoadingSelector,
+  followersDataSelector,
+  followerssuccessNothingSelector
+} from "../Followers/store/selectors";
 import {
   searchSuccessSelector,
   searchValueSelector,
   successNothingSelector
 } from "./store/selectors";
-import ShowPreview from "../ShowPreview";
+import { getApiKeySelector } from "../../store/selectors";
+import UserInfo from "../UserInfo";
+import Followers from "../Followers";
 import styles from "./Search.module.css";
 
 const mapStateToProp = state => {
   return {
-    success: searchSuccessSelector(state),
+    ApiKey: getApiKeySelector(state),
+    dataUser: searchSuccessSelector(state),
     loading: searchValueSelector(state),
-    successNothing: successNothingSelector(state)
+    successNothing: successNothingSelector(state),
+    dataFollowers: followersDataSelector(state),
+    loadingFollowers: followersLoadingSelector(state),
+    successNothingFollowers: followerssuccessNothingSelector(state)
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    searchRequest: query => dispatch(searchRequest(query))
+    searchRequest: arg => dispatch(searchRequest(arg)),
+    followersRequest: arg => dispatch(followersRequest(arg))
   };
 };
 
@@ -28,22 +41,46 @@ class Search extends React.Component {
     value: ""
   };
 
+  searchRef = React.createRef();
+
+  componentDidMount() {
+    if (this.searchRef.current) {
+      this.searchRef.current.focus();
+    }
+  }
+
   handleChange = event => {
     this.setState({ value: event.target.value });
   };
 
   handleSubmit = event => {
-    const { searchRequest } = this.props;
+    const { searchRequest, followersRequest, ApiKey } = this.props;
     const { value } = this.state;
     event.preventDefault();
-    searchRequest(value);
+    const arg = { ApiKey: ApiKey, user: value };
+    if (value) {
+      searchRequest(arg);
+      followersRequest(arg);
+    }
+
     this.setState({ value: "" });
   };
 
   render() {
     const { value } = this.state;
-    console.log("SEARCH WTF!");
-    const { success, loading, successNothing } = this.props;
+
+    const {
+      dataUser,
+      dataFollowers,
+      successNothingFollowers,
+      loading,
+      loadingFollowers,
+      successNothing,
+      searchRequest,
+      followersRequest,
+      ApiKey
+    } = this.props;
+
     return loading ? (
       <div className={styles.search__loading}>
         <div className={styles.search__loader} />
@@ -57,12 +94,20 @@ class Search extends React.Component {
             value={value}
             className={styles.search__input}
             type="text"
-            name="query"
-            placeholder="Название сериала"
+            placeholder="Ник пользователя"
+            ref={this.searchRef}
           />
           <button className={styles.search__button}>Найти</button>
         </form>
-        <ShowPreview data={success} successNothing={successNothing} />
+        <UserInfo data={dataUser} successNothing={successNothing} />
+        <Followers
+          data={dataFollowers}
+          loading={loadingFollowers}
+          successNothing={successNothingFollowers}
+          searchRequest={searchRequest}
+          followersRequest={followersRequest}
+          ApiKey={ApiKey}
+        />
       </div>
     );
   }

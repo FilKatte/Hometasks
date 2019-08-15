@@ -1,9 +1,8 @@
-
 import rootReducer from "../reducer";
 import { createStore, applyMiddleware, compose } from "redux";
 import createSagaMiddleware from "redux-saga";
-import { searchRequestWatch } from '../../middlewares/searchSagas';
-import { showRequestWatch } from '../../middlewares/showSagas';
+import { fetchUserWatcher } from "../../middlewares/SearchUserSagas";
+import { fetchFollowersWatcher } from "../../middlewares/FollowersSagas";
 
 export const sagaMiddleware = createSagaMiddleware(); // создаем промежуточный слой
 
@@ -15,7 +14,7 @@ const store = createStore(
   )
 );
 
-sagaMiddleware.run(searchRequestWatch);
-sagaMiddleware.run(showRequestWatch);
+sagaMiddleware.run(fetchUserWatcher);
+sagaMiddleware.run(fetchFollowersWatcher);
 
 export default store;

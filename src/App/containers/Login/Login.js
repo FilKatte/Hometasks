@@ -77,21 +77,21 @@ class Login extends React.Component {
   render() {
     const { login, errors } = this.state;
     const { apiKey } = this.props;
-    console.log("Login", apiKey);
     if (apiKey) {
       return <Redirect to="/search" />;
     }
     return (
       <section className={styles.login}>
         <div className={styles.login__content}>
-          <h1>Токен авторизации</h1>
           <form className={styles.login__form} onSubmit={this.handleSubmit}>
-            <p className={styles.p}>
+            <h1 className={styles.login__title}>Токен авторизации</h1>
+            <p className={styles.login__text}>
               Получить токен нужно на своей странице github, перейдите по{" "}
               <a
                 target="_blank"
                 rel="noopener noreferrer"
                 href="https://github.com/settings/tokens"
+                className={styles.login__link}
               >
                 адресу
               </a>{" "}
@@ -110,7 +110,7 @@ class Login extends React.Component {
               />
               <span className={styles.login__error}>{errors}</span>
             </p>
-            <p>После ввода нажмите Enter</p>
+            <p className={styles.login__text}>После ввода нажмите Enter</p>
           </form>
         </div>
       </section>

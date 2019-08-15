@@ -15,13 +15,13 @@ const mapStateToProps = state => {
 class App extends React.Component {
   render() {
     const { apiKey } = this.props;
-    console.log(apiKey);
+
     return (
       <BrowserRouter>
         <Switch>
           <PrivateRoute
             exact
-            path="/"
+            path="/search"
             permited={apiKey}
             component={AppRouter}
           />
