@@ -94,7 +94,7 @@ class Login extends React.Component {
     const classNamePasswordInput = errors.password
       ? classNames(styles.login__input, styles.login__input__active)
       : classNames(styles.login__input);
-
+    console.log("LOGIN", isLogin);
     if (isLogin) {
       return <Redirect path="/login" to="/dashboard/allNews" />;
     }

@@ -28,7 +28,7 @@ class App extends React.Component {
 
   render() {
     const { isLogin } = this.props;
-
+    console.log("APP", isLogin);
     return (
       <BrowserRouter>
         <Switch>
