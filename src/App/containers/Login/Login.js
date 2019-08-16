@@ -68,7 +68,7 @@ class Login extends React.Component {
     const { isLogin } = this.props;
 
     if (isLogin) {
-      return <Redirect path="/login" to="/dashboard" />;
+      return <Redirect path="/login" to="/dashboard/map" />;
     }
 
     return (
@@ -103,12 +103,7 @@ class Login extends React.Component {
 
           <p className={styles.login__error}>{errors}</p>
 
-          <Button
-            variant="outlined"
-            color="primary"
-            type="submit"
-            className={styles.login__button}
-          >
+          <Button variant="outlined" color="primary" type="submit">
             Войти
           </Button>
         </form>

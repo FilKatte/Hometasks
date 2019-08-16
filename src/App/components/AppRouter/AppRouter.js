@@ -1,5 +1,7 @@
 import React, { PureComponent } from "react";
 import { withRouter, Redirect, Switch, Route } from "react-router-dom";
+import Dashboard from "../../containers/Dashboard";
+import Header from "../../containers/Dashboard/components/Header";
 
 class AppRouter extends PureComponent {
   render() {
@@ -8,7 +10,7 @@ class AppRouter extends PureComponent {
         <Header />
         <Switch>
           <Route path="/dashboard" component={Dashboard} />
-          <Redirect path="/dashboard/*" to="/dashboard" />
+          <Redirect path="/dashboard/*" to="/dashboard/map" />
         </Switch>
       </div>
     );
@@ -16,6 +18,3 @@ class AppRouter extends PureComponent {
 }
 
 export default withRouter(AppRouter);
-
-const Dashboard = () => <p>Dashboard</p>;
-const Header = () => <p>Header</p>;
