@@ -28,6 +28,13 @@ const isLogin = handleActions(
         }
       }
     ],
+    [
+      logIn,
+      state => ({
+        ...state,
+        loader: true
+      })
+    ],
 
     [
       logInSuccess,
@@ -42,7 +49,8 @@ const isLogin = handleActions(
 
         return {
           ...state,
-          success: action.payload
+          success: action.payload,
+          loader: false
         };
       }
     ],
@@ -51,7 +59,8 @@ const isLogin = handleActions(
       logInFailure,
       (state, action) => ({
         ...state,
-        failure: action.payload
+        failure: action.payload,
+        loader: false
       })
     ],
 
@@ -66,7 +75,7 @@ const isLogin = handleActions(
       }
     ]
   ]),
-  { isAuth: isAuth, success: {}, failure: "" }
+  { isAuth: isAuth, success: {}, failure: "", loader: false }
 );
 
 const appReducers = combineReducers({ isLogin });
