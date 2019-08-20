@@ -24,15 +24,7 @@ const formikEnhancer = withFormik({
 
 class TaxiForm extends React.Component {
   render() {
-    const {
-      addressList,
-      route,
-      values,
-      setFieldValue,
-      handleSubmit
-    } = this.props;
-
-    console.log(route);
+    const { addressList, values, setFieldValue, handleSubmit } = this.props;
 
     const listStart = addressList.map(value => {
       return { value: value, label: value };

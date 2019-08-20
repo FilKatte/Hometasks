@@ -2,15 +2,13 @@ import React from "react";
 import { connect } from "react-redux";
 import { getAddressList } from "../store/duck";
 import { AddressListSelector } from "../store/selectors";
-import { RouteSelector } from "../store/selectors";
 import { getRoute } from "../store/duck";
 import TaxiForm from "./TaxiForm";
 import styles from "./Taxi.module.css";
 
 const mapStateToProps = state => {
   return {
-    addressList: AddressListSelector(state),
-    route: RouteSelector(state)
+    addressList: AddressListSelector(state)
   };
 };
 
@@ -27,11 +25,11 @@ class Taxi extends React.Component {
     getAddressList();
   }
   render() {
-    const { addressList, route, getRoute } = this.props;
+    const { addressList, getRoute } = this.props;
     return (
       <div className={styles.taxi}>
         <p className={styles.taxi__title}>Вызов такси</p>
-        <TaxiForm addressList={addressList} getRoute={getRoute} route={route} />
+        <TaxiForm addressList={addressList} getRoute={getRoute} />
       </div>
     );
   }
