@@ -1,13 +1,9 @@
-.profile {
-  background-color: #ddd;
-  height: 100vh;
-  padding: 48px 0 0 0;
-}
-
-.profile__content {
-  width: 70vw;
-  max-width: 1000px;
-  min-width: 320px;
+.map__content {
+  position: absolute;
+  top: 110px;
+  left: 20px;
+  width: 520px;
+  min-width: 400px;
   padding: 24px;
   margin: auto auto;
   display: flex;
@@ -21,7 +17,7 @@
   background-color: #fff;
 }
 
-.profile__title {
+.map__title {
   color: rgba(0, 0, 0, 0.87);
   font-size: 2.125rem;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
@@ -31,7 +27,7 @@
   margin-bottom: 20px;
 }
 
-.profile__text {
+.map__text {
   color: rgba(0, 0, 0, 0.87);
   font-size: 14px;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;

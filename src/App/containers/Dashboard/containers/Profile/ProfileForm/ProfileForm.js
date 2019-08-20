@@ -36,11 +36,12 @@ const formikEnhancer = withFormik({
     return errors;
   },
   mapPropsToValues: props => {
+    const { name, number, date, cvv } = props;
     return {
-      name: "",
-      number: "",
-      date: "",
-      cvv: ""
+      name: name,
+      number: number,
+      date: date,
+      cvv: cvv
     };
   },
   handleSubmit: (values, props) => {
@@ -57,9 +58,8 @@ const ProfileForm = props => {
   const { values, errors, handleChange, handleSubmit } = props;
 
   return (
-    <form onSubmit={handleSubmit} className={styles.profileForm}>
-      <p className={styles.profile__title}>Профиль</p>
-      <div className={styles.profile__form}>
+    <form onSubmit={handleSubmit} className={styles.profile__form}>
+      <div className={styles.profile__field}>
         <Input
           type="text"
           id="name"

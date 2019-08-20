@@ -1,6 +1,7 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import Profile from "./containers/Profile";
+import Map from "./containers/Map";
 
 class Dashboard extends React.Component {
   render() {
@@ -16,5 +17,3 @@ class Dashboard extends React.Component {
 }
 
 export default Dashboard;
-
-const Map = () => <p>Map</p>;
