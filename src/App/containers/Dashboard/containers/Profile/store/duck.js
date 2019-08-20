@@ -26,7 +26,7 @@ export const data = handleActions(
       })
     ]
   ]),
-  { name: "Kate", number: "", date: "", cvv: "", updatedData: false }
+  { name: "", number: "", date: "", cvv: "", updatedData: false }
 );
 
 const profileReducers = combineReducers({ data });

@@ -1,5 +1,18 @@
 .input_field {
   width: 360px;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.error {
+  position: absolute;
+  top: 30px;
+  left: 0;
+  font-size: 14px;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  line-height: 1.4;
+  letter-spacing: 0.1px;
+  color: #ff4747;
+  margin: 10px 0 20px 0;
 }

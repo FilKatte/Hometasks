@@ -37,7 +37,6 @@ const formikEnhancer = withFormik({
 
 const LoginForm = props => {
   const { values, errors, handleChange, handleSubmit, loader, failure } = props;
-  console.log(failure);
 
   return loader ? (
     <div className={styles.search__loading}>

@@ -4,8 +4,20 @@ import styles from "./TaxiForm.module.css";
 import InputSelect from "../../../../../../shared/InputSelect";
 import Button from "@material-ui/core/Button";
 
+const isEmpty = require("lodash/isEmpty");
+
 const formikEnhancer = withFormik({
   enableReinitialize: true,
+  validate: (values, props) => {
+    const errors = {};
+    const { start, end } = values;
+
+    if (start === end) {
+      errors.start = "Пункты отправления и прибытия совпадают";
+      errors.end = "Пункты отправления и прибытия совпадают";
+    }
+    return errors;
+  },
   mapPropsToValues: () => {
     return {
       start: "",
@@ -24,7 +36,16 @@ const formikEnhancer = withFormik({
 
 class TaxiForm extends React.Component {
   render() {
-    const { addressList, values, setFieldValue, handleSubmit } = this.props;
+    const {
+      addressList,
+      errors,
+      values,
+      setFieldValue,
+      handleSubmit
+    } = this.props;
+
+    const disableButton =
+      values.start && values.end && isEmpty(errors) ? false : true;
 
     const listStart = addressList.map(value => {
       return { value: value, label: value };
@@ -42,6 +63,7 @@ class TaxiForm extends React.Component {
             value={values.start}
             placeholder="Выберите адрес отправления"
             options={listStart}
+            error={errors.start || ""}
           />
 
           <InputSelect
@@ -51,9 +73,15 @@ class TaxiForm extends React.Component {
             value={values.end}
             placeholder="Выберите адрес прибытия"
             options={listEnd}
+            error={errors.end || ""}
           />
         </div>
-        <Button variant="outlined" color="primary" type="submit">
+        <Button
+          variant="outlined"
+          color="primary"
+          type="submit"
+          disabled={disableButton}
+        >
           Вызвать такси
         </Button>
       </form>

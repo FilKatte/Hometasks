@@ -8,7 +8,7 @@ class InputSelect extends React.Component {
     onChange(name, value.value);
   };
   render() {
-    const { values, name, id, placeholder, options } = this.props;
+    const { error, values, name, id, placeholder, options } = this.props;
 
     return (
       <div className={styles.input_field}>
@@ -22,6 +22,7 @@ class InputSelect extends React.Component {
           onChange={this.handleChange}
           options={options}
         />
+        {error && <p className={styles.error}>{error}</p>}
       </div>
     );
   }
