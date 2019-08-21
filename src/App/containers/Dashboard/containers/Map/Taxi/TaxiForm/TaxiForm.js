@@ -3,6 +3,7 @@ import { withFormik } from "formik";
 import styles from "./TaxiForm.module.css";
 import InputSelect from "../../../../../../shared/InputSelect";
 import Button from "@material-ui/core/Button";
+import PropTypes from "prop-types";
 
 const isEmpty = require("lodash/isEmpty");
 
@@ -26,10 +27,11 @@ const formikEnhancer = withFormik({
   },
   handleSubmit: (values, props) => {
     const {
-      props: { getRoute }
+      props: { getRoute, addLayerRoute }
     } = props;
 
     getRoute(values);
+    addLayerRoute();
   },
   displayName: "TaxiForm"
 });
@@ -90,3 +92,11 @@ class TaxiForm extends React.Component {
 }
 
 export default formikEnhancer(TaxiForm);
+
+TaxiForm.propTypes = {
+  addressList: PropTypes.array,
+  errors: PropTypes.object,
+  values: PropTypes.object,
+  getRoute: PropTypes.func,
+  addLayerRoute: PropTypes.func
+};

@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { addData, updateData } from "./store/duck";
+import { addData, changeFlugUpdatedData } from "./store/duck";
 import {
   updatedDataSelector,
   nameSelector,
@@ -12,6 +12,7 @@ import { NavLink } from "react-router-dom";
 import styles from "./Profile.module.css";
 import ProfileForm from "./ProfileForm";
 import Button from "@material-ui/core/Button";
+import PropTypes from "prop-types";
 
 const mapStateToProps = state => {
   return {
@@ -26,7 +27,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     addData: data => dispatch(addData(data)),
-    updateData: () => dispatch(updateData())
+    changeFlugUpdatedData: () => dispatch(changeFlugUpdatedData())
   };
 };
 
@@ -34,7 +35,7 @@ class Profile extends React.Component {
   render() {
     const {
       addData,
-      updateData,
+      changeFlugUpdatedData,
       updatedData,
       name,
       number,
@@ -52,7 +53,11 @@ class Profile extends React.Component {
                 Платёжные данные обновлены. Теперь можете заказывать такси.
               </p>
               <NavLink to="/dashboard/map">
-                <Button onClick={updateData} variant="outlined" color="primary">
+                <Button
+                  onClick={changeFlugUpdatedData}
+                  variant="outlined"
+                  color="primary"
+                >
                   Перейти на карту
                 </Button>
               </NavLink>
@@ -76,3 +81,13 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(Profile);
+
+Profile.propTypes = {
+  addData: PropTypes.func,
+  changeFlugUpdatedData: PropTypes.func,
+  updatedData: PropTypes.bool,
+  name: PropTypes.string,
+  number: PropTypes.string,
+  date: PropTypes.string,
+  cvv: PropTypes.string
+};

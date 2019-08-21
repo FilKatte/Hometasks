@@ -9,6 +9,7 @@ import {
 } from "../../store/selectors";
 import LoginForm from "./LoginForm";
 import styles from "./Login.module.css";
+import PropTypes from "prop-types";
 
 const mapStateToProp = state => {
   return {
@@ -44,3 +45,10 @@ export default connect(
   mapStateToProp,
   mapDispatchToProps
 )(Login);
+
+Login.propTypes = {
+  logIn: PropTypes.func,
+  isLogin: PropTypes.bool,
+  failure: PropTypes.string,
+  loader: PropTypes.bool
+};

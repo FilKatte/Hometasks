@@ -1,6 +1,7 @@
 import React from "react";
 import Select from "react-select";
 import styles from "./InputSelect.module.css";
+import PropTypes from "prop-types";
 
 class InputSelect extends React.Component {
   handleChange = value => {
@@ -28,3 +29,12 @@ class InputSelect extends React.Component {
   }
 }
 export default InputSelect;
+
+InputSelect.propTypes = {
+  error: PropTypes.string,
+  values: PropTypes.string,
+  name: PropTypes.string,
+  id: PropTypes.string,
+  placeholder: PropTypes.string,
+  options: PropTypes.array
+};

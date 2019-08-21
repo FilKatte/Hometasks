@@ -6,7 +6,7 @@ import {
 } from "../App/containers/Dashboard/containers/Map/store/duck";
 import { fetchAddressList } from "./api";
 
-function* fetchAddresses(action) {
+function* fetchAddresses() {
   try {
     const Result = yield call(fetchAddressList);
     yield put(getAddressListSuccess(Result));

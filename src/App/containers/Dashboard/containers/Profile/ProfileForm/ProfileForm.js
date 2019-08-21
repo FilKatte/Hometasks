@@ -2,12 +2,12 @@ import React from "react";
 import { withFormik } from "formik";
 import styles from "./ProfileForm.module.css";
 import Input from "../../../../../shared/Input";
-
 import Button from "@material-ui/core/Button";
+import PropTypes from "prop-types";
 
 const formikEnhancer = withFormik({
   enableReinitialize: true,
-  validate: (values, props) => {
+  validate: values => {
     const errors = {};
     const { name, number, date, cvv } = values;
 
@@ -109,3 +109,13 @@ const ProfileForm = props => {
 };
 
 export default formikEnhancer(ProfileForm);
+
+ProfileForm.propTypes = {
+  addData: PropTypes.func,
+  name: PropTypes.string,
+  number: PropTypes.string,
+  date: PropTypes.string,
+  cvv: PropTypes.string,
+  values: PropTypes.object,
+  errors: PropTypes.object
+};

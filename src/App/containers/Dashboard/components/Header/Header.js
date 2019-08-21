@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import { logOut } from "../../../../store/duck";
 import { connect } from "react-redux";
 import Button from "@material-ui/core/Button";
+import PropTypes from "prop-types";
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -42,3 +43,7 @@ export default connect(
   null,
   mapDispatchToProps
 )(Header);
+
+Header.propTypes = {
+  logOut: PropTypes.func
+};

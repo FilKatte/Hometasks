@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import { checkIsLogin } from "./store/duck";
 import Login from "./containers/Login";
 import AppRouter from "./components/AppRouter";
+import PropTypes from "prop-types";
 
 const mapStateToProps = state => {
   return {
@@ -57,3 +58,8 @@ const PrivateRoute = ({ component: Component, permited, ...rest }) => (
     }
   />
 );
+
+App.propTypes = {
+  isLogin: PropTypes.bool,
+  checkIsLogin: PropTypes.func
+};

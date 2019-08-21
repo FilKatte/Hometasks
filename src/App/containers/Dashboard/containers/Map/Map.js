@@ -8,6 +8,7 @@ import Button from "@material-ui/core/Button";
 import Taxi from "./Taxi";
 import mapboxgl from "mapbox-gl/dist/mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
+import PropTypes from "prop-types";
 
 const mapStateToProps = state => {
   return {
@@ -35,8 +36,8 @@ class Map extends React.Component {
     this.map.remove();
   }
 
-  render() {
-    const { name, route } = this.props;
+  addLayerRoute = () => {
+    const { route } = this.props;
 
     if (this.map && this.map.getLayer("route")) {
       this.map.removeLayer("route");
@@ -78,6 +79,10 @@ class Map extends React.Component {
         speed: 0.5,
         curve: 2
       });
+  };
+
+  render() {
+    const { name } = this.props;
 
     return (
       <div>
@@ -96,7 +101,7 @@ class Map extends React.Component {
               </NavLink>
             </div>
           ) : (
-            <Taxi />
+            <Taxi addLayerRoute={this.addLayerRoute} />
           )}
         </div>
       </div>
@@ -108,3 +113,8 @@ export default connect(
   mapStateToProps,
   null
 )(Map);
+
+Map.propTypes = {
+  name: PropTypes.string,
+  route: PropTypes.array
+};

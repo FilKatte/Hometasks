@@ -1,4 +1,4 @@
 const STORE_TYPE = "profile";
 
 export const ADD_DATA = `${STORE_TYPE}/ADD_DATA`;
-export const UPDATE_DATA = `${STORE_TYPE}/UPDATE_DATA`;
+export const CHANGE_FLUG_UPDATED_DATA = `${STORE_TYPE}/CHANGE_FLUG_UPDATED_DATA`;

@@ -3,7 +3,9 @@ import { createAction, handleActions } from "redux-actions";
 import * as constants from "./constants";
 
 export const addData = createAction(constants.ADD_DATA);
-export const updateData = createAction(constants.UPDATE_DATA);
+export const changeFlugUpdatedData = createAction(
+  constants.CHANGE_FLUG_UPDATED_DATA
+);
 
 export const data = handleActions(
   new Map([
@@ -19,7 +21,7 @@ export const data = handleActions(
       })
     ],
     [
-      updateData,
+      changeFlugUpdatedData,
       state => ({
         ...state,
         updatedData: false

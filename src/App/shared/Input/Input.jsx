@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./Input.module.css";
 import classNames from "classnames";
+import PropTypes from "prop-types";
 
 const Input = props => {
   const {
@@ -44,3 +45,14 @@ const Input = props => {
 };
 
 export default Input;
+
+Input.propTypes = {
+  handleChange: PropTypes.func,
+  error: PropTypes.string,
+  type: PropTypes.string,
+  label: PropTypes.string,
+  value: PropTypes.string,
+  name: PropTypes.string,
+  id: PropTypes.string,
+  helperText: PropTypes.string
+};

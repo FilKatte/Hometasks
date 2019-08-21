@@ -3,6 +3,7 @@ import { withFormik } from "formik";
 import styles from "./LoginForm.module.css";
 import Input from "../../../shared/Input";
 import Button from "@material-ui/core/Button";
+import PropTypes from "prop-types";
 
 const formikEnhancer = withFormik({
   enableReinitialize: true,
@@ -80,3 +81,11 @@ const LoginForm = props => {
 };
 
 export default formikEnhancer(LoginForm);
+
+LoginForm.propTypes = {
+  values: PropTypes.object,
+  errors: PropTypes.object,
+  loader: PropTypes.bool,
+  failure: PropTypes.string,
+  logIn: PropTypes.func
+};
