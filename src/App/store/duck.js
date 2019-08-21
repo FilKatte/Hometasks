@@ -68,6 +68,10 @@ const isLogin = handleActions(
       logOut,
       state => {
         localStorage.setItem("isAuth", JSON.stringify(false));
+        localStorage.setItem(
+          "profile",
+          JSON.stringify({ name: "", number: "", date: "", cvv: "" })
+        );
         return {
           ...state,
           isAuth: false

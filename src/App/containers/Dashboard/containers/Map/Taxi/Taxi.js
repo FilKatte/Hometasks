@@ -26,16 +26,12 @@ class Taxi extends React.Component {
     getAddressList();
   }
   render() {
-    const { addressList, getRoute, addLayerRoute } = this.props;
+    const { addressList, getRoute } = this.props;
 
     return (
       <div className={styles.taxi}>
         <p className={styles.taxi__title}>Вызов такси</p>
-        <TaxiForm
-          addressList={addressList}
-          getRoute={getRoute}
-          addLayerRoute={addLayerRoute}
-        />
+        <TaxiForm addressList={addressList} getRoute={getRoute} />
       </div>
     );
   }
@@ -49,6 +45,5 @@ export default connect(
 Taxi.propTypes = {
   getAddressList: PropTypes.func,
   getRoute: PropTypes.func,
-  addLayerRoute: PropTypes.func,
   addressList: PropTypes.array
 };

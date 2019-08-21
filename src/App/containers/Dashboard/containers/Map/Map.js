@@ -36,9 +36,8 @@ class Map extends React.Component {
     this.map.remove();
   }
 
-  addLayerRoute = () => {
-    const { route } = this.props;
-
+  render() {
+    const { name, route } = this.props;
     if (this.map && this.map.getLayer("route")) {
       this.map.removeLayer("route");
     }
@@ -79,10 +78,6 @@ class Map extends React.Component {
         speed: 0.5,
         curve: 2
       });
-  };
-
-  render() {
-    const { name } = this.props;
 
     return (
       <div>

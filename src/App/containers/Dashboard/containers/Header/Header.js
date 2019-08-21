@@ -2,20 +2,27 @@ import React from "react";
 import styles from "./Header.module.css";
 import { NavLink } from "react-router-dom";
 import { logOut } from "../../../../store/duck";
+import { clearData } from "../Profile/store/duck";
 import { connect } from "react-redux";
 import Button from "@material-ui/core/Button";
 import PropTypes from "prop-types";
 
 const mapDispatchToProps = dispatch => {
   return {
-    logOut: () => dispatch(logOut())
+    logOut: () => dispatch(logOut()),
+    clearData: () => dispatch(clearData())
   };
 };
 
 class Header extends React.Component {
-  render() {
-    const { logOut } = this.props;
+  handleClick = () => {
+    const { logOut, clearData } = this.props;
 
+    logOut();
+    clearData();
+  };
+
+  render() {
     return (
       <header className={styles.header}>
         <div className={styles.header__content}>
@@ -31,7 +38,7 @@ class Header extends React.Component {
                 <Button>Профиль</Button>
               </NavLink>
             </div>
-            <Button onClick={logOut}>Выйти</Button>
+            <Button onClick={this.handleClick}>Выйти</Button>
           </div>
         </div>
       </header>
@@ -45,5 +52,6 @@ export default connect(
 )(Header);
 
 Header.propTypes = {
-  logOut: PropTypes.func
+  logOut: PropTypes.func,
+  clearData: PropTypes.func
 };

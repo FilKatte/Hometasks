@@ -1,10 +1,6 @@
 import { takeEvery, call, put } from "redux-saga/effects";
-import {
-  getRoute,
-  getRouteSuccess,
-  getRouteFailure
-} from "../App/containers/Dashboard/containers/Map/store/duck";
-import { fetchRoute } from "./api";
+import { getRoute, getRouteSuccess, getRouteFailure } from "./duck";
+import { fetchRoute } from "../../../../../../core/utils/api";
 
 function* fetchRouter(action) {
   const {

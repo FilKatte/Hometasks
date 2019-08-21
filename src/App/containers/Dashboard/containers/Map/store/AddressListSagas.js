@@ -3,8 +3,8 @@ import {
   getAddressList,
   getAddressListSuccess,
   getAddressListFailure
-} from "../App/containers/Dashboard/containers/Map/store/duck";
-import { fetchAddressList } from "./api";
+} from "./duck";
+import { fetchAddressList } from "../../../../../../core/utils/api";
 
 function* fetchAddresses() {
   try {

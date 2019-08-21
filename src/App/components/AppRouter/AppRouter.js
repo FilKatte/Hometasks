@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import { withRouter, Redirect, Switch, Route } from "react-router-dom";
 import Dashboard from "../../containers/Dashboard";
-import Header from "../../containers/Dashboard/components/Header";
+import Header from "../../containers/Dashboard/containers/Header";
 
 class AppRouter extends PureComponent {
   render() {

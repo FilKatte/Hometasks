@@ -13,13 +13,13 @@ const formikEnhancer = withFormik({
 
     if (!name) {
       errors.name = "Поле обязательно для заполнения";
-    } else if (!/^[a-zA-Z]+$/.test(name)) {
+    } else if (!/^[a-zA-Z\s]+$/.test(name)) {
       errors.name = "Имя может содержать только латинские буквы";
     }
 
     if (!number) {
       errors.number = "Поле обязательно для заполнения";
-    } else if (!/[0-9]/.test(number) || number.length !== 16) {
+    } else if (!/[0-9]/.test(number)) {
       errors.number = "Номер должен состоять из 16-ти цифр";
     }
 
@@ -49,7 +49,16 @@ const formikEnhancer = withFormik({
       props: { addData }
     } = props;
 
-    addData(values);
+    const { name, number, date, cvv } = values;
+
+    const data = {
+      name,
+      number: number.replace(/\s/g, ""),
+      date,
+      cvv
+    };
+
+    addData(data);
   },
   displayName: "ProfileForm"
 });
@@ -69,13 +78,13 @@ const ProfileForm = props => {
           handleChange={handleChange}
           error={errors.name || ""}
         />
-
         <Input
+          mask="9999 9999 9999 9999"
+          value={values.number}
           type="text"
           id="number"
           label="Номер карты"
           name="number"
-          value={values.number}
           handleChange={handleChange}
           error={errors.number || ""}
         />
@@ -99,6 +108,7 @@ const ProfileForm = props => {
           value={values.cvv}
           handleChange={handleChange}
           error={errors.cvv || ""}
+          maxLength={3}
         />
       </div>
       <Button variant="contained" color="primary" type="submit">

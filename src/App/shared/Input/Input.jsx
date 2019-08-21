@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./Input.module.css";
 import classNames from "classnames";
 import PropTypes from "prop-types";
+import InputMask from "react-input-mask";
 
 const Input = props => {
   const {
@@ -12,16 +13,18 @@ const Input = props => {
     value,
     name,
     id,
-    helperText
+    helperText,
+    maxLength,
+    mask
   } = props;
   const classNameError = error
     ? classNames(styles.field__input, styles.field__input__error)
     : classNames(styles.field__input);
 
   return (
-    <div className={styles.input_field}>
+    <div className={styles.field}>
       <label htmlFor={id} className={styles.field__label}>
-        <input
+        <InputMask
           id={id}
           type={type}
           name={name}
@@ -30,6 +33,8 @@ const Input = props => {
           error={error || ""}
           placeholder="&nbsp;"
           className={classNameError}
+          maxLength={maxLength}
+          mask={mask}
         />
         <span className={styles.label}> {label}</span>
         <span className={styles.border} />

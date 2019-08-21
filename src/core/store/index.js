@@ -1,9 +1,7 @@
 import rootReducer from "../reducer";
 import { createStore, applyMiddleware, compose } from "redux";
 import createSagaMiddleware from "redux-saga";
-import { SignIntWatch } from "../../middlewares/loginSagas";
-import { AddressesWatch } from "../../middlewares/AdressListSagas";
-import { RouteWatch } from "../../middlewares/RouteSagas";
+import rootSaga from "../saga/index";
 
 export const sagaMiddleware = createSagaMiddleware();
 
@@ -15,8 +13,6 @@ const store = createStore(
   )
 );
 
-sagaMiddleware.run(SignIntWatch);
-sagaMiddleware.run(AddressesWatch);
-sagaMiddleware.run(RouteWatch);
+sagaMiddleware.run(rootSaga);
 
 export default store;

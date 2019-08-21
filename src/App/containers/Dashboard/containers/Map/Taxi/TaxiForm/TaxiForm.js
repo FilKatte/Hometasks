@@ -27,11 +27,10 @@ const formikEnhancer = withFormik({
   },
   handleSubmit: (values, props) => {
     const {
-      props: { getRoute, addLayerRoute }
+      props: { getRoute }
     } = props;
 
     getRoute(values);
-    addLayerRoute();
   },
   displayName: "TaxiForm"
 });
@@ -97,6 +96,5 @@ TaxiForm.propTypes = {
   addressList: PropTypes.array,
   errors: PropTypes.object,
   values: PropTypes.object,
-  getRoute: PropTypes.func,
-  addLayerRoute: PropTypes.func
+  getRoute: PropTypes.func
 };

@@ -1,6 +1,6 @@
 import { takeEvery, call, put } from "redux-saga/effects";
-import { logIn, logInSuccess, logInFailure } from "../App/store/duck";
-import { SignIn } from "./api";
+import { logIn, logInSuccess, logInFailure } from "./duck";
+import { SignIn } from "../../core/utils/api";
 
 function* fetchSignIn(action) {
   const {
