@@ -6,6 +6,7 @@ import { getRoute } from "../store/duck";
 import TaxiForm from "./TaxiForm";
 import styles from "./Taxi.module.css";
 import PropTypes from "prop-types";
+import { FormattedMessage } from "react-intl";
 
 const mapStateToProps = state => {
   return {
@@ -30,7 +31,9 @@ class Taxi extends React.Component {
 
     return (
       <div className={styles.taxi}>
-        <p className={styles.taxi__title}>Вызов такси</p>
+        <p className={styles.taxi__title}>
+          <FormattedMessage id="taxi_title" />
+        </p>
         <TaxiForm addressList={addressList} getRoute={getRoute} />
       </div>
     );

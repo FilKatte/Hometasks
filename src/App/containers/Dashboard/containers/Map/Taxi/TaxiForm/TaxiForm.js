@@ -4,6 +4,7 @@ import styles from "./TaxiForm.module.css";
 import InputSelect from "../../../../../../shared/InputSelect";
 import Button from "@material-ui/core/Button";
 import PropTypes from "prop-types";
+import { FormattedMessage } from "react-intl";
 
 const isEmpty = require("lodash/isEmpty");
 
@@ -14,8 +15,8 @@ const formikEnhancer = withFormik({
     const { start, end } = values;
 
     if (start === end) {
-      errors.start = "Пункты отправления и прибытия совпадают";
-      errors.end = "Пункты отправления и прибытия совпадают";
+      errors.start = "taxiForm_validate_error";
+      errors.end = "taxiForm_validate_error";
     }
     return errors;
   },
@@ -62,7 +63,7 @@ class TaxiForm extends React.Component {
             name="start"
             onChange={setFieldValue}
             value={values.start}
-            placeholder="Выберите адрес отправления"
+            placeholder="taxiForm_placeholder_start"
             options={listStart}
             error={errors.start || ""}
           />
@@ -72,7 +73,7 @@ class TaxiForm extends React.Component {
             name="end"
             onChange={setFieldValue}
             value={values.end}
-            placeholder="Выберите адрес прибытия"
+            placeholder="taxiForm_placeholder_end"
             options={listEnd}
             error={errors.end || ""}
           />
@@ -83,7 +84,7 @@ class TaxiForm extends React.Component {
           type="submit"
           disabled={disableButton}
         >
-          Вызвать такси
+          <FormattedMessage id="taxiForm_button_text" />
         </Button>
       </form>
     );

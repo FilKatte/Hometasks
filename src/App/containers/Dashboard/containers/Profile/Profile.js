@@ -13,6 +13,7 @@ import styles from "./Profile.module.css";
 import ProfileForm from "./ProfileForm";
 import Button from "@material-ui/core/Button";
 import PropTypes from "prop-types";
+import { FormattedMessage } from "react-intl";
 
 const mapStateToProps = state => {
   return {
@@ -46,11 +47,13 @@ class Profile extends React.Component {
     return (
       <div className={styles.profile}>
         <div className={styles.profile__content}>
-          <p className={styles.profile__title}>Профиль</p>
+          <p className={styles.profile__title}>
+            <FormattedMessage id="profile_title" />
+          </p>
           {updatedData ? (
             <div>
               <p className={styles.profile__text}>
-                Платёжные данные обновлены. Теперь можете заказывать такси.
+                <FormattedMessage id="profile_text" />
               </p>
               <NavLink to="/dashboard/map">
                 <Button
@@ -58,7 +61,7 @@ class Profile extends React.Component {
                   variant="outlined"
                   color="primary"
                 >
-                  Перейти на карту
+                  <FormattedMessage id="profile_button_to_map_text" />
                 </Button>
               </NavLink>
             </div>

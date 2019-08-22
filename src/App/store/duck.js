@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { createAction, handleActions } from "redux-actions";
+import { createAction, handleAction, handleActions } from "redux-actions";
 import * as constants from "./constants";
 
 const isAuth = JSON.parse(localStorage.getItem("isAuth"));
@@ -9,6 +9,13 @@ export const logIn = createAction(constants.LOG_IN);
 export const logInSuccess = createAction(constants.LOG_IN_SUCCESS);
 export const logInFailure = createAction(constants.LOG_IN_FAILURE);
 export const logOut = createAction(constants.LOG_OUT);
+export const changeLocale = createAction(constants.CHANGE_LOCALE);
+
+const locale = handleAction(
+  changeLocale,
+  (state, action) => action.payload,
+  "ru"
+);
 
 const isLogin = handleActions(
   new Map([
@@ -82,6 +89,6 @@ const isLogin = handleActions(
   { isAuth: isAuth, success: {}, failure: "", loader: false }
 );
 
-const appReducers = combineReducers({ isLogin });
+const appReducers = combineReducers({ isLogin, locale });
 
 export default appReducers;

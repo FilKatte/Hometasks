@@ -2,6 +2,7 @@ import React from "react";
 import Select from "react-select";
 import styles from "./InputSelect.module.css";
 import PropTypes from "prop-types";
+import { FormattedMessage } from "react-intl";
 
 class InputSelect extends React.Component {
   handleChange = value => {
@@ -16,14 +17,18 @@ class InputSelect extends React.Component {
         <Select
           className="basic-single"
           classNamePrefix="select"
-          placeholder={placeholder}
+          placeholder={<FormattedMessage id={placeholder} />}
           id={id}
           name={name}
           value={values}
           onChange={this.handleChange}
           options={options}
         />
-        {error && <p className={styles.error}>{error}</p>}
+        {error && (
+          <p className={styles.error}>
+            <FormattedMessage id={error} />
+          </p>
+        )}
       </div>
     );
   }

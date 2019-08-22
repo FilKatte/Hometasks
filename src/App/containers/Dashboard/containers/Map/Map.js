@@ -10,6 +10,7 @@ import Taxi from "./Taxi";
 import mapboxgl from "mapbox-gl/dist/mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import PropTypes from "prop-types";
+import { FormattedMessage } from "react-intl";
 
 const isEmpty = require("lodash/isEmpty");
 
@@ -101,26 +102,32 @@ class Map extends React.Component {
         <div className={styles.map__content}>
           {!name ? (
             <div>
-              <p className={styles.map__title}>Заполните платежные данные</p>
+              <p className={styles.map__title}>
+                <FormattedMessage id="map_title_to_profile" />
+              </p>
               <p className={styles.map__text}>
-                Укажите информацию о банковской карте, чтобы сделать заказ.
+                <FormattedMessage id="map_text_to_profile" />
               </p>
               <NavLink to="/dashboard/profile">
                 <Button variant="outlined" color="primary">
-                  Перейти в профиль
+                  <FormattedMessage id="map_button_to_profile_text" />
                 </Button>
               </NavLink>
             </div>
           ) : routeBuild ? (
             <div>
-              <p className={styles.map__title}>Заказ размещён</p>
-              <p className={styles.map__text}>Ваше такси уже едет к вам.</p>
+              <p className={styles.map__title}>
+                <FormattedMessage id="map_title_to_taxi" />
+              </p>
+              <p className={styles.map__text}>
+                <FormattedMessage id="map_text_to_taxi" />
+              </p>
               <Button
                 onClick={this.removeLayer}
                 variant="outlined"
                 color="primary"
               >
-                Сделать новый заказ
+                <FormattedMessage id="map_button_to_taxi_text" />
               </Button>
             </div>
           ) : (

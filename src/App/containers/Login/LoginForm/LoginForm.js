@@ -4,23 +4,24 @@ import styles from "./LoginForm.module.css";
 import Input from "../../../shared/Input";
 import Button from "@material-ui/core/Button";
 import PropTypes from "prop-types";
+import { FormattedMessage } from "react-intl";
 
 const formikEnhancer = withFormik({
   enableReinitialize: true,
-  validate: (values, props) => {
+  validate: values => {
     const errors = {};
     const { username, password } = values;
 
     if (!username) {
-      errors.username = "Поле обязательно для заполнения";
+      errors.username = "login_validate_error";
     }
     if (!password) {
-      errors.password = "Поле обязательно для заполнения";
+      errors.password = "login_validate_error";
     }
 
     return errors;
   },
-  mapPropsToValues: props => {
+  mapPropsToValues: () => {
     return {
       username: "",
       password: ""
@@ -42,16 +43,21 @@ const LoginForm = props => {
   return loader ? (
     <div className={styles.search__loading}>
       <div className={styles.search__loader} />
-      <p className={styles.loading__text}>Loading</p>
+      <p className={styles.loading__text}>
+        {" "}
+        <FormattedMessage id="loader" />
+      </p>
     </div>
   ) : (
     <form onSubmit={handleSubmit} className={styles.loginForm__form}>
-      <p className={styles.loginForm__title}>Войти</p>
+      <p className={styles.loginForm__title}>
+        <FormattedMessage id="login_title" />
+      </p>
       <div>
         <Input
           type="email"
           id="username"
-          label="Имя пользователя"
+          label="login_label_username"
           name="username"
           value={values.username}
           handleChange={handleChange}
@@ -62,7 +68,7 @@ const LoginForm = props => {
         <Input
           type="password"
           id="password"
-          label="Пароль"
+          label="login_label_password"
           name="password"
           value={values.password}
           handleChange={handleChange}
@@ -70,11 +76,14 @@ const LoginForm = props => {
         />
       </div>
       {failure && (
-        <p className={styles.error}>Неверное имя пользователя или пароль</p>
+        <p className={styles.error}>
+          {" "}
+          <FormattedMessage id="login_error" />
+        </p>
       )}
 
       <Button variant="outlined" color="primary" type="submit">
-        Войти
+        <FormattedMessage id="login_button_text" />
       </Button>
     </form>
   );

@@ -4,6 +4,7 @@ import styles from "./ProfileForm.module.css";
 import Input from "../../../../../shared/Input";
 import Button from "@material-ui/core/Button";
 import PropTypes from "prop-types";
+import { FormattedMessage } from "react-intl";
 
 const formikEnhancer = withFormik({
   enableReinitialize: true,
@@ -12,25 +13,25 @@ const formikEnhancer = withFormik({
     const { name, number, date, cvv } = values;
 
     if (!name) {
-      errors.name = "Поле обязательно для заполнения";
+      errors.name = "profileForm_validate_error";
     } else if (!/^[a-zA-Z\s]+$/.test(name)) {
-      errors.name = "Имя может содержать только латинские буквы";
+      errors.name = "profileForm_validate_error_name";
     }
 
     if (!number) {
-      errors.number = "Поле обязательно для заполнения";
+      errors.number = "profileForm_validate_error";
     } else if (!/[0-9]/.test(number)) {
-      errors.number = "Номер должен состоять из 16-ти цифр";
+      errors.number = "profileForm_validate_error_number";
     }
 
     if (!date) {
-      errors.date = "Поле обязательно для заполнения";
+      errors.date = "profileForm_validate_error";
     }
 
     if (!cvv) {
-      errors.cvv = "Поле обязательно для заполнения";
+      errors.cvv = "profileForm_validate_error";
     } else if (!/[0-9]+$/.test(cvv) || cvv.length !== 3) {
-      errors.cvv = "CVV должен состоять из 3-х цифр";
+      errors.cvv = "profileForm_validate_error_cvv";
     }
 
     return errors;
@@ -72,7 +73,7 @@ const ProfileForm = props => {
         <Input
           type="text"
           id="name"
-          label="Имя владельца"
+          label="profileForm_label_name"
           name="name"
           value={values.name}
           handleChange={handleChange}
@@ -83,7 +84,7 @@ const ProfileForm = props => {
           value={values.number}
           type="text"
           id="number"
-          label="Номер карты"
+          label="profileForm_label_number"
           name="number"
           handleChange={handleChange}
           error={errors.number || ""}
@@ -92,7 +93,7 @@ const ProfileForm = props => {
         <Input
           type="date"
           id="date"
-          label="Дата окончания действия"
+          label="profileForm_label_date"
           name="date"
           value={values.date}
           handleChange={handleChange}
@@ -101,9 +102,9 @@ const ProfileForm = props => {
 
         <Input
           type="text"
-          id="date"
-          label="CVV"
-          helperText="Последние 3 цифры на обратной стороне карты"
+          id="cvv"
+          label="profileForm_label_cvv"
+          helperText="profileForm_helperText"
           name="cvv"
           value={values.cvv}
           handleChange={handleChange}
@@ -112,7 +113,7 @@ const ProfileForm = props => {
         />
       </div>
       <Button variant="contained" color="primary" type="submit">
-        Сохранить
+        <FormattedMessage id="profileForm_button_text" />
       </Button>
     </form>
   );

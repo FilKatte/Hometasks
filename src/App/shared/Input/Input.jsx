@@ -3,6 +3,7 @@ import styles from "./Input.module.css";
 import classNames from "classnames";
 import PropTypes from "prop-types";
 import InputMask from "react-input-mask";
+import { FormattedMessage } from "react-intl";
 
 const Input = props => {
   const {
@@ -17,6 +18,7 @@ const Input = props => {
     maxLength,
     mask
   } = props;
+
   const classNameError = error
     ? classNames(styles.field__input, styles.field__input__error)
     : classNames(styles.field__input);
@@ -36,14 +38,21 @@ const Input = props => {
           maxLength={maxLength}
           mask={mask}
         />
-        <span className={styles.label}> {label}</span>
+        <span className={styles.label}>
+          {" "}
+          <FormattedMessage id={label} />
+        </span>
         <span className={styles.border} />
       </label>
 
       {error ? (
-        <p className={styles.error}>{error}</p>
+        <p className={styles.error}>
+          <FormattedMessage id={error} />
+        </p>
       ) : (
-        <p className={styles.helperText}>{helperText}</p>
+        <p className={styles.helperText}>
+          {helperText && <FormattedMessage id={helperText} />}
+        </p>
       )}
     </div>
   );
