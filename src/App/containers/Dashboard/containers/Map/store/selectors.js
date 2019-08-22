@@ -6,4 +6,5 @@ export const loaderAddressListSelector = state =>
   mapSelector(state).AddressList.loader;
 
 export const RouteSelector = state => mapSelector(state).Route.route;
+export const RouteFlagSelector = state => mapSelector(state).Route.routeBuild;
 export const loaderRouteSelector = state => mapSelector(state).Route.loader;

@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { addData, changeFlugUpdatedData } from "./store/duck";
+import { addData, changeFlagUpdatedData } from "./store/duck";
 import {
   updatedDataSelector,
   nameSelector,
@@ -27,7 +27,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     addData: data => dispatch(addData(data)),
-    changeFlugUpdatedData: () => dispatch(changeFlugUpdatedData())
+    changeFlagUpdatedData: () => dispatch(changeFlagUpdatedData())
   };
 };
 
@@ -35,7 +35,7 @@ class Profile extends React.Component {
   render() {
     const {
       addData,
-      changeFlugUpdatedData,
+      changeFlagUpdatedData,
       updatedData,
       name,
       number,
@@ -54,7 +54,7 @@ class Profile extends React.Component {
               </p>
               <NavLink to="/dashboard/map">
                 <Button
-                  onClick={changeFlugUpdatedData}
+                  onClick={changeFlagUpdatedData}
                   variant="outlined"
                   color="primary"
                 >
@@ -84,7 +84,7 @@ export default connect(
 
 Profile.propTypes = {
   addData: PropTypes.func,
-  changeFlugUpdatedData: PropTypes.func,
+  changeFlagUpdatedData: PropTypes.func,
   updatedData: PropTypes.bool,
   name: PropTypes.string,
   number: PropTypes.string,

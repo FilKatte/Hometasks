@@ -9,7 +9,7 @@ const isEmpty = require("lodash/isEmpty");
 
 const formikEnhancer = withFormik({
   enableReinitialize: true,
-  validate: (values, props) => {
+  validate: values => {
     const errors = {};
     const { start, end } = values;
 

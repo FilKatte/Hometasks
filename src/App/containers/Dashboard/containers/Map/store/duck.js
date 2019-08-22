@@ -13,6 +13,7 @@ export const getAddressListFailure = createAction(
 export const getRoute = createAction(constants.GET_ROUTE);
 export const getRouteSuccess = createAction(constants.GET_ROUTE_SUCCESS);
 export const getRouteFailure = createAction(constants.GET_ROUTE_FAILURE);
+export const changeFlagRoute = createAction(constants.CHANGE_FLAG_ROUTE);
 
 const AddressList = handleActions(
   new Map([
@@ -60,7 +61,8 @@ const Route = handleActions(
       (state, action) => ({
         ...state,
         route: action.payload,
-        loader: false
+        loader: false,
+        routeBuild: true
       })
     ],
 
@@ -71,9 +73,18 @@ const Route = handleActions(
         failure: action.payload,
         loader: false
       })
+    ],
+
+    [
+      changeFlagRoute,
+      state => ({
+        ...state,
+        routeBuild: false,
+        route: []
+      })
     ]
   ]),
-  { route: [], failure: "", loader: false }
+  { route: [], failure: "", loader: false, routeBuild: false }
 );
 
 const mapReducers = combineReducers({ AddressList, Route });

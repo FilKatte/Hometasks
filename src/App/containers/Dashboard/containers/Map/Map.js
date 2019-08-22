@@ -1,7 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { nameSelector } from "../Profile/store/selectors";
-import { RouteSelector } from "../Map/store/selectors";
+import { RouteSelector, RouteFlagSelector } from "../Map/store/selectors";
+import { changeFlagRoute } from "../Map/store/duck";
 import { NavLink } from "react-router-dom";
 import styles from "./Map.module.css";
 import Button from "@material-ui/core/Button";
@@ -10,10 +11,19 @@ import mapboxgl from "mapbox-gl/dist/mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import PropTypes from "prop-types";
 
+const isEmpty = require("lodash/isEmpty");
+
 const mapStateToProps = state => {
   return {
     name: nameSelector(state),
-    route: RouteSelector(state)
+    route: RouteSelector(state),
+    routeBuild: RouteFlagSelector(state)
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    changeFlagRoute: () => dispatch(changeFlagRoute())
   };
 };
 
@@ -36,8 +46,9 @@ class Map extends React.Component {
     this.map.remove();
   }
 
-  render() {
-    const { name, route } = this.props;
+  removeLayer = () => {
+    const { changeFlagRoute } = this.props;
+    changeFlagRoute();
     if (this.map && this.map.getLayer("route")) {
       this.map.removeLayer("route");
     }
@@ -45,8 +56,13 @@ class Map extends React.Component {
     if (this.map && this.map.getSource("route")) {
       this.map.removeSource("route");
     }
+  };
+
+  render() {
+    const { name, route, routeBuild } = this.props;
 
     this.map &&
+      !isEmpty(route) &&
       this.map.addLayer({
         id: "route",
         type: "line",
@@ -95,6 +111,18 @@ class Map extends React.Component {
                 </Button>
               </NavLink>
             </div>
+          ) : routeBuild ? (
+            <div>
+              <p className={styles.map__title}>Заказ размещён</p>
+              <p className={styles.map__text}>Ваше такси уже едет к вам.</p>
+              <Button
+                onClick={this.removeLayer}
+                variant="outlined"
+                color="primary"
+              >
+                Сделать новый заказ
+              </Button>
+            </div>
           ) : (
             <Taxi addLayerRoute={this.addLayerRoute} />
           )}
@@ -106,10 +134,12 @@ class Map extends React.Component {
 
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(Map);
 
 Map.propTypes = {
   name: PropTypes.string,
-  route: PropTypes.array
+  routeBuild: PropTypes.bool,
+  route: PropTypes.array,
+  changeFlagRoute: PropTypes.func
 };

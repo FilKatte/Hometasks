@@ -38,10 +38,10 @@ const formikEnhancer = withFormik({
   mapPropsToValues: props => {
     const { name, number, date, cvv } = props;
     return {
+      cvv: cvv,
       name: name,
-      number: number,
       date: date,
-      cvv: cvv
+      number: number
     };
   },
   handleSubmit: (values, props) => {
@@ -103,7 +103,7 @@ const ProfileForm = props => {
           type="text"
           id="date"
           label="CVV"
-          helperText="Last three digits on signature strip"
+          helperText="Последние 3 цифры на обратной стороне карты"
           name="cvv"
           value={values.cvv}
           handleChange={handleChange}

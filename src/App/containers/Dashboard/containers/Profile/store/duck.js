@@ -6,8 +6,8 @@ const profile = JSON.parse(localStorage.getItem("profile"));
 
 export const addData = createAction(constants.ADD_DATA);
 export const clearData = createAction(constants.CLEAR_DATA);
-export const changeFlugUpdatedData = createAction(
-  constants.CHANGE_FLUG_UPDATED_DATA
+export const changeFlagUpdatedData = createAction(
+  constants.CHANGE_FLAG_UPDATED_DATA
 );
 
 export const data = handleActions(
@@ -23,21 +23,17 @@ export const data = handleActions(
         };
 
         localStorage.setItem("profile", JSON.stringify(profileData));
-        const profile = JSON.parse(localStorage.getItem("profile"));
 
         return {
           ...state,
-          name: profile.name,
-          number: profile.number,
-          date: profile.date,
-          cvv: profile.cvv,
+          ...profileData,
           updatedData: true
         };
       }
     ],
 
     [
-      changeFlugUpdatedData,
+      changeFlagUpdatedData,
       state => ({
         ...state,
         updatedData: false
