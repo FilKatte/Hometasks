@@ -8,6 +8,8 @@ import {
   dateSelector,
   cvvSelector
 } from "./store/selectors";
+
+import { localeSelector } from "../../../../store/selectors";
 import { NavLink } from "react-router-dom";
 import styles from "./Profile.module.css";
 import ProfileForm from "./ProfileForm";
@@ -18,6 +20,7 @@ import { FormattedMessage } from "react-intl";
 const mapStateToProps = state => {
   return {
     updatedData: updatedDataSelector(state),
+    locale: localeSelector(state),
     name: nameSelector(state),
     number: numberSelector(state),
     date: dateSelector(state),
@@ -38,6 +41,7 @@ class Profile extends React.Component {
       addData,
       changeFlagUpdatedData,
       updatedData,
+      locale,
       name,
       number,
       date,
@@ -72,6 +76,7 @@ class Profile extends React.Component {
               number={number}
               date={date}
               cvv={cvv}
+              locale={locale}
             />
           )}
         </div>
@@ -92,5 +97,6 @@ Profile.propTypes = {
   name: PropTypes.string,
   number: PropTypes.string,
   date: PropTypes.string,
-  cvv: PropTypes.string
+  cvv: PropTypes.string,
+  locale: PropTypes.string
 };

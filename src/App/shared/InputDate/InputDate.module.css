@@ -1,0 +1,105 @@
+.field {
+  margin: 0 0 50px 0;
+  width: 340px;
+  position: relative;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+.field__label {
+  position: relative;
+  margin: auto;
+}
+
+.label {
+  position: absolute;
+  top: 6px;
+  left: 0;
+  font-size: 16px;
+  color: #9098a9;
+  font-weight: 500;
+  transform-origin: 0 0;
+  transition: all 0.3s ease;
+}
+
+.border {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background: #223254;
+  transform: scaleX(0);
+  transform-origin: 0 0;
+  transition: all 0.5s ease;
+}
+
+.field__input {
+  -webkit-appearance: none;
+  width: 340px;
+  border: 0;
+  font-family: inherit;
+  padding: 12px 0;
+  height: 48px;
+  font-size: 16px;
+  font-weight: 500;
+  border-bottom: 2px solid #c8ccd4;
+  background: none;
+  border-radius: 0;
+  color: rgba(0, 0, 0, 0.87);
+  transition: all 0.3s ease;
+}
+
+.field__input__error {
+  border-bottom: 2px solid #ff4747;
+}
+
+.field__input__error + span {
+  color: #ff4747;
+}
+
+.field__input:hover {
+  background: rgba(#223254, 0.03);
+}
+
+.field__input:not(:placeholder-shown) + span {
+  color: #5a667f;
+  transform: translateY(-26px) scale(0.75);
+}
+
+.field__input:focus {
+  background: none;
+  outline: none;
+}
+
+.field__input:focus + span {
+  color: #223254;
+  transform: translateY(-26px) scale(0.85);
+}
+
+.field__input:focus + span + .border {
+  transform: scaleX(1);
+  transform: translateY(16px);
+}
+
+.error {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  font-size: 14px;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  line-height: 1.4;
+  letter-spacing: 0.1px;
+  color: #ff4747;
+  margin: 10px 0 20px 0;
+}
+
+.helperText {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  font-size: 14px;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  line-height: 1.4;
+  letter-spacing: 0.1px;
+  color: rgba(0, 0, 0, 0.54);
+}

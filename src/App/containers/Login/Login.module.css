@@ -5,8 +5,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: url("./assets/taxi.png") no-repeat;
-  background-size: 100% auto;
-  background-position-y: 50%;
+  background: url("./assets/taxi.jpg") no-repeat;
+  background-size: cover;
   background-color: rgb(243, 239, 233);
 }

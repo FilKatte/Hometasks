@@ -57,7 +57,7 @@ export const data = handleActions(
   {
     name: (profile && profile.name) || "",
     number: (profile && profile.number) || "",
-    date: (profile && profile.date) || "",
+    date: (profile && profile.date) || null,
     cvv: (profile && profile.cvv) || "",
     updatedData: false
   }

@@ -25,15 +25,17 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-const options = [{ value: "ru", label: "RU" }, { value: "en", label: "EN" }];
-
 class App extends React.Component {
   state = {
-    value: options[0]
+    startDate: "ru"
   };
 
   componentDidMount() {
-    const { checkIsLogin } = this.props;
+    const { checkIsLogin, locale } = this.props;
+    locale &&
+      this.setState({
+        value: { value: locale, label: locale.toUpperCase() }
+      });
     checkIsLogin();
   }
 
@@ -48,18 +50,13 @@ class App extends React.Component {
   render() {
     const { isLogin, locale } = this.props;
     const { value } = this.state;
-    console.log(locale);
 
     return (
       <IntlProvider locale={locale} messages={translations[locale]}>
         <BrowserRouter>
           <div className="wrapper">
             <div className="app_select">
-              <SelectLanguage
-                value={value}
-                options={options}
-                handleChange={this.handleChange}
-              />
+              <SelectLanguage value={value} handleChange={this.handleChange} />
             </div>
             <Switch>
               <PrivateRoute
@@ -93,5 +90,6 @@ const PrivateRoute = ({ component: Component, permited, ...rest }) => (
 
 App.propTypes = {
   isLogin: PropTypes.bool,
-  checkIsLogin: PropTypes.func
+  checkIsLogin: PropTypes.func,
+  locale: PropTypes.string
 };

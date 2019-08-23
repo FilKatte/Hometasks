@@ -10,8 +10,6 @@ import PropTypes from "prop-types";
 import { FormattedMessage } from "react-intl";
 import SelectLanguage from "../../../../shared/SelectLanguage";
 
-const options = [{ value: "ru", label: "RU" }, { value: "en", label: "EN" }];
-
 const mapStateToProps = state => {
   return {
     locale: localeSelector(state)
@@ -27,14 +25,17 @@ const mapDispatchToProps = dispatch => {
 };
 
 class Header extends React.Component {
-  constructor(props) {
-    super(props);
-    const { locale } = this.props;
-    this.state = {
-      value: { value: locale, label: locale.toUpperCase() }
-    };
-  }
+  state = {
+    startDate: "ru"
+  };
 
+  componentDidMount() {
+    const { locale } = this.props;
+    locale &&
+      this.setState({
+        value: { value: locale, label: locale.toUpperCase() }
+      });
+  }
   handleClick = () => {
     const { logOut, clearData } = this.props;
 
@@ -77,11 +78,7 @@ class Header extends React.Component {
               </Button>
             </div>
 
-            <SelectLanguage
-              value={value}
-              options={options}
-              handleChange={this.handleChange}
-            />
+            <SelectLanguage value={value} handleChange={this.handleChange} />
           </div>
         </div>
       </header>
@@ -96,5 +93,6 @@ export default connect(
 
 Header.propTypes = {
   logOut: PropTypes.func,
-  clearData: PropTypes.func
+  clearData: PropTypes.func,
+  locale: PropTypes.string
 };

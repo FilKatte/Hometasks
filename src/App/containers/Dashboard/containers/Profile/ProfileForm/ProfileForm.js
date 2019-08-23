@@ -2,9 +2,11 @@ import React from "react";
 import { withFormik } from "formik";
 import styles from "./ProfileForm.module.css";
 import Input from "../../../../../shared/Input";
+import InputDate from "../../../../../shared/InputDate";
 import Button from "@material-ui/core/Button";
 import PropTypes from "prop-types";
 import { FormattedMessage } from "react-intl";
+import moment from "moment";
 
 const formikEnhancer = withFormik({
   enableReinitialize: true,
@@ -55,7 +57,7 @@ const formikEnhancer = withFormik({
     const data = {
       name,
       number: number.replace(/\s/g, ""),
-      date,
+      date: moment(date).format("MM-DD-YYYY"),
       cvv
     };
 
@@ -65,7 +67,14 @@ const formikEnhancer = withFormik({
 });
 
 const ProfileForm = props => {
-  const { values, errors, handleChange, handleSubmit } = props;
+  const {
+    locale,
+    values,
+    errors,
+    handleChange,
+    setFieldValue,
+    handleSubmit
+  } = props;
 
   return (
     <form onSubmit={handleSubmit} className={styles.profile__form}>
@@ -82,7 +91,6 @@ const ProfileForm = props => {
         <Input
           mask="9999 9999 9999 9999"
           value={values.number}
-          type="text"
           id="number"
           label="profileForm_label_number"
           name="number"
@@ -90,13 +98,13 @@ const ProfileForm = props => {
           error={errors.number || ""}
         />
 
-        <Input
-          type="date"
+        <InputDate
+          locale={locale}
           id="date"
-          label="profileForm_label_date"
+          helperText="profileForm_label_date"
           name="date"
           value={values.date}
-          handleChange={handleChange}
+          onChange={setFieldValue}
           error={errors.date || ""}
         />
 

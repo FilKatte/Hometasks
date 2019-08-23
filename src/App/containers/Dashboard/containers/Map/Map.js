@@ -89,6 +89,7 @@ class Map extends React.Component {
       });
 
     this.map &&
+      !isEmpty(route) &&
       this.map.flyTo({
         center: route[0],
         zoom: 13,
