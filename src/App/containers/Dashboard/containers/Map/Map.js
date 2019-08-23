@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { nameSelector } from "../Profile/store/selectors";
-import { RouteSelector, RouteFlagSelector } from "../Map/store/selectors";
+import { RouteSelector, RouteFlagSelector } from "./store/selectors";
 import { changeFlagRoute } from "../Map/store/duck";
 import { NavLink } from "react-router-dom";
 import styles from "./Map.module.css";
@@ -60,7 +60,7 @@ class Map extends React.Component {
   };
 
   render() {
-    const { name, route, routeBuild } = this.props;
+    const { name, route, routeBuild, loader } = this.props;
 
     this.map &&
       !isEmpty(route) &&
