@@ -27,10 +27,9 @@
   left: 0;
   height: 2px;
   width: 100%;
-  background: #223254;
   transform: scaleX(0);
   transform-origin: 0 0;
-  transition: all 0.5s ease;
+  transition: all 0.3s ease;
 }
 
 .field__input {
@@ -49,16 +48,27 @@
   transition: all 0.3s ease;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus input:-webkit-autofill {
+  -webkit-text-fill-color: #ссс;
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+  transition: background-color 5000s ease-in-out 0s;
+  background: -webkit-linear-gradient(
+    top,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(0, 174, 255, 0.04) 50%,
+    rgba(255, 255, 255, 0) 51%,
+    rgba(0, 174, 255, 0.03) 100%
+  );
+}
+
 .field__input__error {
   border-bottom: 2px solid #ff4747;
 }
 
 .field__input__error + span {
   color: #ff4747;
-}
-
-.field__input:hover {
-  background: rgba(#223254, 0.03);
 }
 
 .field__input:not(:placeholder-shown) + span {
@@ -69,6 +79,7 @@
 .field__input:focus {
   background: none;
   outline: none;
+  border-bottom: 2px solid #223254;
 }
 
 .field__input:focus + span {

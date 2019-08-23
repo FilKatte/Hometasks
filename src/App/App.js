@@ -26,30 +26,19 @@ const mapDispatchToProps = dispatch => {
 };
 
 class App extends React.Component {
-  state = {
-    startDate: "ru"
-  };
-
   componentDidMount() {
-    const { checkIsLogin, locale } = this.props;
-    locale &&
-      this.setState({
-        value: { value: locale, label: locale.toUpperCase() }
-      });
+    const { checkIsLogin } = this.props;
     checkIsLogin();
   }
 
   handleChange = value => {
     const { changeLocale } = this.props;
-
     changeLocale(value.value);
-
-    this.setState({ value });
   };
 
   render() {
     const { isLogin, locale } = this.props;
-    const { value } = this.state;
+    const value = { value: locale, label: locale.toUpperCase() };
 
     return (
       <IntlProvider locale={locale} messages={translations[locale]}>

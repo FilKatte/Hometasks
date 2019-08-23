@@ -9,6 +9,7 @@ class SelectLanguage extends React.Component {
     const { value, handleChange } = this.props;
     return (
       <Select
+        styles={customStyles}
         value={value}
         onChange={handleChange}
         options={options}
@@ -18,3 +19,15 @@ class SelectLanguage extends React.Component {
   }
 }
 export default SelectLanguage;
+
+const customStyles = {
+  control: base => ({
+    ...base,
+    cursor: "pointer",
+    width: 100
+  }),
+  option: base => ({
+    ...base,
+    cursor: "pointer"
+  })
+};

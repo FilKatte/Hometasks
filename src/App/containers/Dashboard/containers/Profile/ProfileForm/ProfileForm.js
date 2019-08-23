@@ -22,7 +22,7 @@ const formikEnhancer = withFormik({
 
     if (!number) {
       errors.number = "profileForm_validate_error";
-    } else if (!/[0-9]/.test(number)) {
+    } else if (!/[0-9]+$/.test(number) || number.indexOf("_") !== -1) {
       errors.number = "profileForm_validate_error_number";
     }
 

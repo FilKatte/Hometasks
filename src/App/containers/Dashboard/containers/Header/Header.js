@@ -25,17 +25,6 @@ const mapDispatchToProps = dispatch => {
 };
 
 class Header extends React.Component {
-  state = {
-    startDate: "ru"
-  };
-
-  componentDidMount() {
-    const { locale } = this.props;
-    locale &&
-      this.setState({
-        value: { value: locale, label: locale.toUpperCase() }
-      });
-  }
   handleClick = () => {
     const { logOut, clearData } = this.props;
 
@@ -45,14 +34,13 @@ class Header extends React.Component {
 
   handleChange = value => {
     const { changeLocale } = this.props;
-
     changeLocale(value.value);
-
-    this.setState({ value });
   };
 
   render() {
-    const { value } = this.state;
+    const { locale } = this.props;
+    const value = { value: locale, label: locale.toUpperCase() };
+
     return (
       <header className={styles.header}>
         <div className={styles.header__content}>
