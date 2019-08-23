@@ -60,7 +60,7 @@ class Map extends React.Component {
   };
 
   render() {
-    const { name, route, routeBuild, loader } = this.props;
+    const { name, route, routeBuild } = this.props;
 
     this.map &&
       !isEmpty(route) &&
