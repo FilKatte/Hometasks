@@ -4,6 +4,7 @@ import { showRequest } from "./store/duck";
 import { showSuccessSelector, showValueSelector } from "./store/selectors";
 import styles from "./ShowPage.module.css";
 import avatar from "./assets/default_avatar.png";
+import film from "../ShowPreview/assets/default__image__film.png";
 import moment from "moment";
 
 const isEmpty = require("lodash/isEmpty");
@@ -43,7 +44,11 @@ class ShowPage extends React.Component {
           <div className={styles.showPage}>
             <div className={styles.showPage__info}>
               <div className={styles.info__image}>
-                <img src={data.image && data.image.medium} alt="Cover" />
+                <img
+                  src={(data.image && data.image.medium) || film}
+                  alt="Cover"
+                  className={styles.info__icon}
+                />
               </div>
 
               <ul className={styles.info__list}>
@@ -52,24 +57,32 @@ class ShowPage extends React.Component {
                   <p className={styles.info__data}>{data.name}</p>
                 </li>
 
-                <li className={styles.info__item}>
-                  <p className={styles.info__text}>Year</p>
-                  <p className={styles.info__data}>
-                    {moment(data.premiered).format("YYYY")}
-                  </p>
-                </li>
+                {data.premiered && (
+                  <li className={styles.info__item}>
+                    <p className={styles.info__text}>Year</p>
+                    <p className={styles.info__data}>
+                      {moment(data.premiered).format("YYYY")}
+                    </p>
+                  </li>
+                )}
 
-                <li className={styles.info__item}>
-                  <p className={styles.info__text}>Country</p>
-                  <p className={styles.info__data}>
-                    {data.network && data.network.country.name}
-                  </p>
-                </li>
+                {data.network && (
+                  <li className={styles.info__item}>
+                    <p className={styles.info__text}>Country</p>
+                    <p className={styles.info__data}>
+                      data.network.country.name
+                    </p>
+                  </li>
+                )}
 
-                <li className={styles.info__item}>
-                  <p className={styles.info__text}>Genres</p>
-                  <p className={styles.info__data}>{data.genres.join(", ")}</p>
-                </li>
+                {data.genres.length !== 0 && (
+                  <li className={styles.info__item}>
+                    <p className={styles.info__text}>Genres</p>
+                    <p className={styles.info__data}>
+                      {data.genres.join(", ")}
+                    </p>
+                  </li>
+                )}
               </ul>
             </div>
 
