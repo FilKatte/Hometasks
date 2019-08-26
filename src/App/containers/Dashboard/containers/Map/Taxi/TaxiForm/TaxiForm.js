@@ -28,10 +28,11 @@ const formikEnhancer = withFormik({
   },
   handleSubmit: (values, props) => {
     const {
-      props: { getRoute }
+      props: { getRoute, addTrip }
     } = props;
 
     getRoute(values);
+    addTrip(values);
   },
   displayName: "TaxiForm"
 });

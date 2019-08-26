@@ -10,6 +10,8 @@ export const changeFlagUpdatedData = createAction(
   constants.CHANGE_FLAG_UPDATED_DATA
 );
 
+export const addTrip = createAction(constants.ADD_TRIP);
+
 export const data = handleActions(
   new Map([
     [
@@ -49,7 +51,20 @@ export const data = handleActions(
           name: profile.name,
           number: profile.number,
           date: profile.date,
-          cvv: profile.cvv
+          cvv: profile.cvv,
+          trips: []
+        };
+      }
+    ],
+    [
+      addTrip,
+      (state, action) => {
+        const {
+          payload: { start, end }
+        } = action;
+        return {
+          ...state,
+          trips: [{ date: new Date(), start, end }, ...state.trips]
         };
       }
     ]
@@ -59,7 +74,8 @@ export const data = handleActions(
     number: (profile && profile.number) || "",
     date: (profile && profile.date) || null,
     cvv: (profile && profile.cvv) || "",
-    updatedData: false
+    updatedData: false,
+    trips: []
   }
 );
 

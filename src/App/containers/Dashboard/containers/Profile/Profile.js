@@ -13,6 +13,7 @@ import { localeSelector } from "../../../../store/selectors";
 import { NavLink } from "react-router-dom";
 import styles from "./Profile.module.css";
 import ProfileForm from "./ProfileForm";
+import TripsHistory from "./TripsHistory";
 import Button from "@material-ui/core/Button";
 import PropTypes from "prop-types";
 import { FormattedMessage } from "react-intl";
@@ -80,6 +81,8 @@ class Profile extends React.Component {
             />
           )}
         </div>
+
+        <TripsHistory />
       </div>
     );
   }

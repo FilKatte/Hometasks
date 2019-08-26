@@ -6,3 +6,5 @@ export const dateSelector = state => profileSelector(state).data.date;
 export const cvvSelector = state => profileSelector(state).data.cvv;
 export const updatedDataSelector = state =>
   profileSelector(state).data.updatedData;
+
+export const tripsSelector = state => profileSelector(state).data.trips;

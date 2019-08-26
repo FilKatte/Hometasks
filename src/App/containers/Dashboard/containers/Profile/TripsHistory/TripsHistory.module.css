@@ -1,0 +1,91 @@
+.tripHistory_content {
+  width: 70vw;
+  max-width: 1000px;
+  min-width: 460px;
+  padding: 24px;
+  margin: auto auto;
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2),
+    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  background-color: #fff;
+}
+
+.tripHistory__title {
+  color: rgba(0, 0, 0, 0.87);
+  font-size: 2.125rem;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 400;
+  line-height: 1.17;
+  letter-spacing: 0.00735em;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.tripHistory_item {
+  padding: 20px;
+}
+
+.tripHistory__date {
+  color: rgba(0, 0, 0, 0.87);
+  font-size: 14px;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 400;
+  line-height: 1.17;
+  letter-spacing: 0.00735em;
+}
+
+.tripHistory__text {
+  color: rgba(0, 0, 0, 0.87);
+  font-size: 14px;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 400;
+  line-height: 1.17;
+  letter-spacing: 0.00735em;
+}
+
+.tripHistory__list {
+  margin: 0;
+  counter-reset: li;
+  list-style: none;
+  padding: 10px;
+  max-height: 310px;
+  overflow-y: auto; /*вертикальный скрол*/
+}
+.tripHistory__list li {
+  position: relative;
+  margin: 0 0 10px 2em;
+  padding: 4px 8px;
+  border-top: 2px solid #787a77;
+  transition: 0.3s linear;
+}
+.tripHistory__list li:last-child {
+  margin-bottom: 0;
+}
+.tripHistory__list li:before {
+  content: counter(li);
+  counter-increment: li;
+  position: absolute;
+  top: -2px;
+  left: -2em;
+  width: 2em;
+  box-sizing: border-box;
+  margin-right: 8px;
+  padding: 4px;
+  border-top: 2px solid #787a77;
+  border-left: 2px solid transparent;
+  border-right: 2px solid transparent;
+  border-bottom: 2px solid transparent;
+  background: #787a77;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  transition: 0.3s linear;
+}
+.tripHistory__list li:hover {
+  border-top: 2px solid #3f51b5;
+  background: #eefafb;
+}
+.tripHistory__list li:hover:before {
+  border: 2px solid #3f51b5;
+  background: #3f51b5;
+}

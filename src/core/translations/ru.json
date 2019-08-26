@@ -32,5 +32,7 @@
   "profileForm_label_date": "Дата окончания действия",
   "profileForm_label_cvv": "CVV",
   "profileForm_helperText": "Последние 3 цифры на обратной стороне карты",
-  "profileForm_button_text": "Сохранить"
+  "profileForm_button_text": "Сохранить",
+  "tripHistory__title": "История поездок",
+  "tripHistory__text": "Список пуст"
 }

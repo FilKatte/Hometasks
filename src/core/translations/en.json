@@ -32,5 +32,7 @@
   "profileForm_label_date": "Expiration date",
   "profileForm_label_cvv": "CVV",
   "profileForm_helperText": "Last three digits on signature strip",
-  "profileForm_button_text": "Save"
+  "profileForm_button_text": "Save",
+  "tripHistory__title": "Trips history",
+  "tripHistory__text": "The list is empty"
 }
