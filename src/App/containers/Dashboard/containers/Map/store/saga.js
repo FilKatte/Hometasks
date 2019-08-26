@@ -5,9 +5,16 @@ import {
   getRouteFailure,
   getAddressList,
   getAddressListSuccess,
-  getAddressListFailure
+  getAddressListFailure,
+  getWeather,
+  getWeatherSuccess,
+  getWeatherFailure
 } from "./duck";
-import { fetchRoute, fetchAddressList } from "../../../../../../core/utils/api";
+import {
+  fetchRoute,
+  fetchAddressList,
+  fetchWeather
+} from "../../../../../../core/utils/api";
 
 function* fetchRouterWorker(action) {
   const {
@@ -31,6 +38,19 @@ function* fetchAddressesWorker() {
   }
 }
 
+function* fetchWeatherWorker() {
+  try {
+    const result = yield call(fetchWeather);
+    yield put(getWeatherSuccess(result));
+  } catch (error) {
+    yield put(getWeatherFailure(error));
+  }
+}
+
+function* WeatheWatch() {
+  yield takeLatest(getWeather, fetchWeatherWorker);
+}
+
 function* AddressesWatch() {
   yield takeLatest(getAddressList, fetchAddressesWorker);
 }
@@ -40,5 +60,5 @@ function* RouteWatch() {
 }
 
 export function* mapSaga() {
-  yield all([AddressesWatch(), RouteWatch()]);
+  yield all([AddressesWatch(), RouteWatch(), WeatheWatch()]);
 }

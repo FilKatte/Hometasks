@@ -11,6 +11,7 @@ import mapboxgl from "mapbox-gl/dist/mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import PropTypes from "prop-types";
 import { FormattedMessage } from "react-intl";
+import Weather from "./Weather";
 
 const isEmpty = require("lodash/isEmpty");
 
@@ -100,6 +101,9 @@ class Map extends React.Component {
     return (
       <div>
         <div ref={this.mapContainer} className={styles.map} />
+        <div className={styles.map__weather}>
+          <Weather />
+        </div>
         <div className={styles.map__content}>
           {!name ? (
             <div>

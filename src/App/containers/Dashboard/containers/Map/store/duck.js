@@ -13,6 +13,11 @@ export const getAddressListFailure = createAction(
 export const getRoute = createAction(constants.GET_ROUTE);
 export const getRouteSuccess = createAction(constants.GET_ROUTE_SUCCESS);
 export const getRouteFailure = createAction(constants.GET_ROUTE_FAILURE);
+
+export const getWeather = createAction(constants.GET_WEATHER);
+export const getWeatherSuccess = createAction(constants.GET_WEATHER_SUCCESS);
+export const getWeatherFailure = createAction(constants.GET_WEATHER_FAILURE);
+
 export const changeFlagRoute = createAction(constants.CHANGE_FLAG_ROUTE);
 
 const AddressList = handleActions(
@@ -87,6 +92,37 @@ const Route = handleActions(
   { route: [], failure: "", loader: false, routeBuild: false }
 );
 
-const mapReducers = combineReducers({ AddressList, Route });
+const Weather = handleActions(
+  new Map([
+    [
+      getWeather,
+      state => ({
+        ...state,
+        loader: true
+      })
+    ],
+
+    [
+      getWeatherSuccess,
+      (state, action) => ({
+        ...state,
+        data: action.payload,
+        loader: false
+      })
+    ],
+
+    [
+      getWeatherFailure,
+      (state, action) => ({
+        ...state,
+        failure: action.payload,
+        loader: false
+      })
+    ]
+  ]),
+  { data: {}, failure: "", loader: false }
+);
+
+const mapReducers = combineReducers({ AddressList, Route, Weather });
 
 export default mapReducers;

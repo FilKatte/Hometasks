@@ -8,3 +8,5 @@ export const loaderAddressListSelector = state =>
 export const RouteSelector = state => mapSelector(state).Route.route;
 export const RouteFlagSelector = state => mapSelector(state).Route.routeBuild;
 export const loaderRouteSelector = state => mapSelector(state).Route.loader;
+
+export const WeatherSelector = state => mapSelector(state).Weather.data;

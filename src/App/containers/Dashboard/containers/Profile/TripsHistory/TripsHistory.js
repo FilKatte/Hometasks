@@ -25,7 +25,7 @@ class TripsHistory extends React.Component {
             <FormattedMessage id="tripHistory__title" />
           </div>
           {isEmpty(trips) ? (
-            <div className={styles.tripHistory__text}>
+            <div className={styles.tripHistory__text_empty}>
               <FormattedMessage id="tripHistory__text" />
             </div>
           ) : (

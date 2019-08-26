@@ -1,5 +1,5 @@
 {
-  "loader": "loader",
+  "loader": "Loading...",
   "login_title": "Log in",
   "login_error": "Login or password is incorrect",
   "login_validate_error": "Required field",
