@@ -19,6 +19,6 @@ export const fetchRoute = (start, end) => {
 export const fetchWeather = () => {
   const name = "Saint+Petersburg";
   return fetch(
-    `https://api.openweathermap.org/data/2.5/weather?q=${name}&appid=ea574594b9d36ab688642d5fbeab847e&units=metric`
+    `https://api.openweathermap.org/data/2.5/weather?q=${name}&appid=2bde50bdcc809a6230f17e9ba8e7f951&units=metric`
   ).then(response => response.json());
 };

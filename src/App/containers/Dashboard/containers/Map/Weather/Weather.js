@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { WeatherSelector } from "../store/selectors";
 import { getWeather } from "../store/duck";
+import styles from "./Weather.module.css";
 
 const isEmpty = require("lodash/isEmpty");
 
@@ -18,10 +19,35 @@ const mapDispatchToProps = dispatch => {
 };
 
 class Weather extends React.Component {
-  render() {
-    const { data, getWeather } = this.props;
+  componentDidMount() {
+    const { getWeather } = this.props;
     getWeather();
-    return <div>{!isEmpty(data) && data.main.temp}</div>;
+  }
+  render() {
+    const { data } = this.props;
+    console.log(data);
+    return (
+      !isEmpty(data) && (
+        <div className={styles.weather}>
+          <div className={styles.weather__title}> {data.name}</div>
+          <div className={styles.weather__info}>
+            <img
+              src={`http://openweathermap.org/img/wn/${
+                data.weather[0].icon
+              }@2x.png`}
+              alt="Weather"
+              className={styles.info__icon}
+            />
+            <div>
+              <p className={styles.info__temp}>
+                {data.main.temp.toFixed()} {String.fromCharCode(176, 67)}
+              </p>
+              <p className={styles.info__text}>{data.weather[0].main}</p>
+            </div>
+          </div>
+        </div>
+      )
+    );
   }
 }
 
