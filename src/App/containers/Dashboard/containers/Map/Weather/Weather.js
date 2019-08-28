@@ -25,7 +25,7 @@ class Weather extends React.Component {
   }
   render() {
     const { data } = this.props;
-    console.log(data);
+
     return (
       !isEmpty(data) && (
         <div className={styles.weather}>

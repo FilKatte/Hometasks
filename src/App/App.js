@@ -38,7 +38,7 @@ class App extends React.Component {
 
   render() {
     const { isLogin, locale } = this.props;
-    console.log(this.props);
+
     const value = { value: locale, label: locale.toUpperCase() };
 
     return (

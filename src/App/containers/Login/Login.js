@@ -28,6 +28,7 @@ const mapDispatchToProps = dispatch => {
 class Login extends React.Component {
   render() {
     const { isLogin, logIn, loader, failure } = this.props;
+    console.log(this.props);
 
     if (isLogin) {
       return <Redirect path="/login" to="/dashboard/map" />;
