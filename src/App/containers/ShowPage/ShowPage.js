@@ -70,7 +70,7 @@ class ShowPage extends React.Component {
                   <li className={styles.info__item}>
                     <p className={styles.info__text}>Country</p>
                     <p className={styles.info__data}>
-                      data.network.country.name
+                      {data.network.country.name}
                     </p>
                   </li>
                 )}
