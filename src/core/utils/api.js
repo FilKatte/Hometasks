@@ -1,4 +1,4 @@
-export const fetchLogIn = (username = "test@test.com", password = "123123") => {
+export const fetchLogIn = (username, password) => {
   return fetch(
     `https://loft-taxi.glitch.me/auth?username=${username}&password=${password}`
   ).then(response => response.json());
