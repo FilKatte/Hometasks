@@ -2,7 +2,7 @@ import { takeLatest, call, put } from "redux-saga/effects";
 import { logIn, logInSuccess, logInFailure } from "./duck";
 import { fetchLogIn } from "../../core/utils/api";
 
-function* fetchLogInWorker(action) {
+export function* fetchLogInWorker(action) {
   const {
     payload: { username, password }
   } = action;

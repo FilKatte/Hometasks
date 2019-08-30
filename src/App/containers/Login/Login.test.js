@@ -42,7 +42,6 @@ describe("Test LOGIN", () => {
         </IntlProvider>
       </Provider>
     );
-    console.log(wrapper.find(Login));
   });
 
   it("+++ render the connected(SMART) component", () => {

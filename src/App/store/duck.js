@@ -17,7 +17,7 @@ const locale = handleAction(
   "ru"
 );
 
-const isLogin = handleActions(
+export const isLogin = handleActions(
   new Map([
     [
       checkIsLogin,
@@ -66,7 +66,7 @@ const isLogin = handleActions(
       logInFailure,
       (state, action) => ({
         ...state,
-        failure: action.payload,
+        failure: action.payload || "",
         loader: false
       })
     ],
