@@ -1,13 +1,11 @@
 import { put, takeLatest } from "redux-saga/effects";
-import * as constants from "./constants";
 import { fetchLogInWorker, logInWatch } from "./saga";
+import { logIn, logInSuccess } from "./duck";
 
 describe("SAGAS", () => {
   it('should dispatch action "logIn" ', () => {
     const generator = logInWatch();
-    expect(generator.next().value).toEqual(
-      takeLatest(constants.LOG_IN, fetchLogInWorker)
-    );
+    expect(generator.next().value).toEqual(takeLatest(logIn, fetchLogInWorker));
     expect(generator.next().done).toBeTruthy();
   });
   it('should dispatch action "LOG_IN_SUCCESS"', () => {
@@ -15,7 +13,7 @@ describe("SAGAS", () => {
     const generator = fetchLogInWorker();
     generator.next();
     expect(generator.next(mockResponse).value).toEqual(
-      put({ type: constants.LOG_IN_SUCCESS, json: "Some content" })
+      put({ logInSuccess, json: "Some content" })
     );
     expect(generator.next().done).toBeTruthy();
   });
