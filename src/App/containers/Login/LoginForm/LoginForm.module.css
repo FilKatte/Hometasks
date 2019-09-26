@@ -1,5 +1,5 @@
 .loginForm__form {
-  width: 380px;
+  width: 340px;
   height: 410px;
   display: flex;
   flex-direction: column;
@@ -7,16 +7,22 @@
   justify-content: center;
   box-shadow: 0 20px 31px 0 rgba(0, 43, 86, 0.15),
     0 0 20px 0 rgba(0, 43, 86, 0.04);
-  background-color: #f5f5f5;
+  background-color: #e9ecf0;
   border-radius: 6px;
 }
 
 .loginForm__title {
-  margin-bottom: 20px;
+  color: rgba(32, 31, 31, 0.87);
+  margin-bottom: 24px;
+  font-family: helvetica neue, Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 1.1;
+  text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.2);
 }
 
 .loginForm__fieldInput {
-  width: 230px;
+  width: 240px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -24,6 +30,24 @@
 
 .loginForm__field {
   margin-bottom: 20px;
+}
+
+.loginForm__input {
+  height: 30px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #272b30;
+  background-color: rgb(219, 228, 230);
+  margin-bottom: 10px;
+  padding-left: 10px;
+}
+
+.loginForm__error {
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.4;
+  letter-spacing: 0.1px;
+  color: #ff4747;
 }
 
 .loginForm__button {
@@ -40,19 +64,4 @@
 .loginForm__button:hover {
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
   background-image: linear-gradient(#404448, #4e5458 40%, #585e62);
-}
-
-.loginForm__input {
-  height: 30px;
-  font-size: 14px;
-  line-height: 1.42857143;
-  color: #272b30;
-  background-color: rgb(219, 228, 230);
-}
-
-.loginForm__error {
-  font-size: 12px;
-  line-height: 1.4;
-  letter-spacing: 0.1px;
-  color: #ff4747;
 }
