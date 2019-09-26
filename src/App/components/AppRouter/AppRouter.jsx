@@ -1,5 +1,6 @@
 import React, { PureComponent } from "react";
 import { withRouter, Redirect, Switch, Route } from "react-router-dom";
+import Dashboard from "../../containers/Dashboard";
 
 class AppRouter extends PureComponent {
   render() {
@@ -13,5 +14,3 @@ class AppRouter extends PureComponent {
 }
 
 export default withRouter(AppRouter);
-
-const Dashboard = () => <div>Dashboard</div>;
