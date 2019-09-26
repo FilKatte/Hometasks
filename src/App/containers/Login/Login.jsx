@@ -4,6 +4,7 @@ import { Redirect } from "react-router-dom";
 import { logIn } from "../../store/duck";
 import { isLoginSelector } from "../../store/selectors";
 import LoginForm from "./LoginForm";
+import styles from "./Login.module.css";
 
 const mapStateToProp = state => {
   return {
@@ -26,7 +27,7 @@ class Login extends React.Component {
     }
 
     return (
-      <div>
+      <div className={styles.login}>
         <LoginForm logIn={logIn} />
       </div>
     );

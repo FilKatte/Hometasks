@@ -5,6 +5,7 @@ import { isLoginSelector } from "./store/selectors";
 import { checkIsLogin } from "./store/duck";
 import Login from "./containers/Login";
 import AppRouter from "./components/AppRouter";
+import "./App.css";
 
 const mapStateToProps = state => {
   return {
@@ -26,8 +27,6 @@ class App extends React.Component {
 
   render() {
     const { isLogin } = this.props;
-
-    console.log(this.props);
 
     return (
       <BrowserRouter>

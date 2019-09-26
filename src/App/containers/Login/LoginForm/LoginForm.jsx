@@ -1,5 +1,6 @@
 import React from "react";
 import { withFormik } from "formik";
+import styles from "./LoginForm.module.css";
 
 const formData = {
   name: "Kate",
@@ -46,30 +47,41 @@ const LoginForm = props => {
   const { values, errors, handleChange, handleSubmit } = props;
 
   return (
-    <form onSubmit={handleSubmit}>
-      <p>Log in</p>
-      <div>
-        <label htmlFor="name">Name</label>
-        <input
-          type="text"
-          name="name"
-          value={values.name}
-          onChange={handleChange}
-        />
-        <span>{errors.name || ""}</span>
-      </div>
-      <div>
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          name="password"
-          value={values.password}
-          onChange={handleChange}
-        />
-        <span>{errors.password || ""}</span>
+    <form onSubmit={handleSubmit} className={styles.loginForm__form}>
+      <p className={styles.loginForm__title}>Log in</p>
+      <div className={styles.loginForm__field}>
+        <div className={styles.loginForm__fieldInput}>
+          <label htmlFor="name" className={styles.loginForm__text}>
+            Name
+          </label>
+          <input
+            type="text"
+            name="name"
+            value={values.name}
+            onChange={handleChange}
+            className={styles.loginForm__input}
+          />
+        </div>
+        <p className={styles.loginForm__error}>{errors.name || ""}</p>
       </div>
 
-      <button type="submit">Log In</button>
+      <div className={styles.loginForm__field}>
+        <div className={styles.loginForm__fieldInput}>
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            name="password"
+            value={values.password}
+            onChange={handleChange}
+            className={styles.loginForm__input}
+          />
+        </div>
+        <p className={styles.loginForm__error}>{errors.password || ""}</p>
+      </div>
+
+      <button type="submit" className={styles.loginForm__button}>
+        Log In
+      </button>
     </form>
   );
 };
