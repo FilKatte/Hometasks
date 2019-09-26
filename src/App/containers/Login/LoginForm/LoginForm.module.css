@@ -9,6 +9,7 @@
     0 0 20px 0 rgba(0, 43, 86, 0.04);
   background-color: #e9ecf0;
   border-radius: 6px;
+  margin: 0 auto;
 }
 
 .loginForm__title {
@@ -38,6 +39,7 @@
   line-height: 1.42857143;
   color: #272b30;
   background-color: rgb(219, 228, 230);
+  border-radius: 4px;
   margin-bottom: 10px;
   padding-left: 10px;
 }
