@@ -35,7 +35,7 @@ class Films extends React.Component {
       </div>
     ) : (
       <div className={styles.films}>
-        <div className={styles.title}>Films</div>
+        <div className={styles.title}>Films d</div>
         {films && (
           <ul className={styles.showPage__personList}>
             {films.map(obj => (
