@@ -1,7 +1,7 @@
 import React from "react";
-//import { Switch, Route } from "react-router-dom";
-import Header from "./containers/Header";
-
+import { Switch, Route } from "react-router-dom";
+import Header from "./components/Header";
+import Films from "./containers/Films";
 import styles from "./Dashboard.module.css";
 
 class Dashboard extends React.Component {
@@ -9,11 +9,10 @@ class Dashboard extends React.Component {
     return (
       <div className={styles.dashboard}>
         <Header />
-        Dashboard
-        {/* <Switch>
-          <Route path="/dashboard" component={Map} />
-          <Route path="/dashboard/profile" component={Profile} />
-        </Switch> */}
+        <Switch>
+          <Route path="/dashboard" component={Films} />
+          <Route path="/dashboard/films" component={Films} />
+        </Switch>
       </div>
     );
   }

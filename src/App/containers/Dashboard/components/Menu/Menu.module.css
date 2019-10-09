@@ -1,0 +1,24 @@
+.list {
+  display: flex;
+}
+
+.item:not(:last-child) {
+  margin-right: 20px;
+}
+
+.item:not(:last-child):after {
+  content: "|";
+  color: #fff;
+  padding-left: 20px;
+}
+
+.link {
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}
+
+.link__active,
+.link:hover {
+  color: #eef106;
+}
