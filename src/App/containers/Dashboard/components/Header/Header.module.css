@@ -3,7 +3,6 @@
   box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
     0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
   background-color: #272b30;
-  position: relative;
 }
 
 .header__content {
@@ -14,13 +13,27 @@
   padding: 0 30px;
 }
 
-.logo__icon {
-  width: 150px;
-}
-
 .logOut__button {
   width: 100px;
   height: 30px;
   background-color: #e9ecf0;
   border-radius: 6px;
+  transition: 0.5s;
+}
+
+.logOut__button:hover {
+  background-color: #fff;
+}
+
+.logo__icon {
+  width: 150px;
+  transition: 0.5s;
+}
+
+.logo__icon:hover {
+  transform: scale(1.1, 1.1);
+}
+
+.logo {
+  position: relative;
 }
