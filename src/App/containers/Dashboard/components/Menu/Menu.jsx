@@ -13,7 +13,6 @@ const menuList = [
 
 class Menu extends React.Component {
   render() {
-    console.log("Menu");
     return (
       <nav className={styles.menu}>
         <ul className={styles.list}>
