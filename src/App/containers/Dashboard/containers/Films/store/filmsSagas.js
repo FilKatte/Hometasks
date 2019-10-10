@@ -7,7 +7,7 @@ function* fetchFilmsListWorker() {
     const result = yield call(fetchFilmsList);
     yield put(getFilmListSuccess(result));
   } catch (error) {
-    yield put(getFilmListFailure(error));
+    yield put(getFilmListFailure(error.message));
   }
 }
 

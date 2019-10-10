@@ -35,11 +35,13 @@ class Films extends React.Component {
       </div>
     ) : (
       <div className={styles.films}>
-        <div className={styles.title}>Films d</div>
+        <div className={styles.title}>Films</div>
         {films && (
-          <ul className={styles.showPage__personList}>
+          <ul>
             {films.map(obj => (
-              <li key={obj.episode_id}>{obj.title}</li>
+              <li key={obj.episode_id}>
+                {obj.title}, episode {obj.episode_id}
+              </li>
             ))}
           </ul>
         )}
