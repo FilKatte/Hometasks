@@ -25,7 +25,8 @@ const mapDispatchToProps = dispatch => {
 
 class People extends React.Component {
   componentDidMount() {
-    this.getPeopleListHandler();
+    const { peopleList } = this.props;
+    peopleList.length === 0 && this.getPeopleListHandler();
   }
 
   componentDidUpdate(prevProps, prevState) {
