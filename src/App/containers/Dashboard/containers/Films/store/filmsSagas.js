@@ -5,7 +5,7 @@ import { fetchFilmsList } from "./api";
 function* fetchFilmsListWorker() {
   try {
     const result = yield call(fetchFilmsList);
-    yield put(getFilmListSuccess(result));
+    yield put(getFilmListSuccess(result.results));
   } catch (error) {
     yield put(getFilmListFailure(error.message));
   }

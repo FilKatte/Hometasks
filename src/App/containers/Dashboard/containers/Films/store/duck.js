@@ -9,6 +9,9 @@ export const getFilmListFailure = createAction(
   constants.GET_FILMS_LIST_FAILURE
 );
 
+export const sortAsFilmList = createAction(constants.SORT_AS_FILMS_LIST);
+export const sortDesFilmList = createAction(constants.SORT_DES_FILMS_LIST);
+
 const FilmsListReducer = handleActions(
   new Map([
     [
@@ -35,9 +38,33 @@ const FilmsListReducer = handleActions(
         failure: action.payload,
         loader: false
       })
+    ],
+
+    [
+      sortAsFilmList,
+      (state, action) => {
+        const sortedList = state.filmsList.sort(
+          (a, b) => a["episode_id"] - b["episode_id"]
+        );
+        return { ...state, filmsList: [...sortedList] };
+      }
+    ],
+
+    [
+      sortDesFilmList,
+      (state, action) => {
+        const sortedList = state.filmsList.sort(
+          (a, b) => b["episode_id"] - a["episode_id"]
+        );
+        return { ...state, filmsList: [...sortedList] };
+      }
     ]
   ]),
-  { filmsList: {}, failure: "", loader: false }
+  {
+    filmsList: [],
+    failure: "",
+    loader: false
+  }
 );
 
 export default FilmsListReducer;

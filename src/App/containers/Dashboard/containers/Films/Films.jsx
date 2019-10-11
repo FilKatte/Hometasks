@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { filmsListSelector, loaderFilmsListSelector } from "./store/selectors";
-import { getFilmList } from "./store/duck";
+import { getFilmList, sortAsFilmList, sortDesFilmList } from "./store/duck";
 import styles from "./Films.module.css";
 
 const mapStateToProps = state => {
@@ -13,20 +13,30 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getFilmList: () => dispatch(getFilmList())
+    getFilmList: () => dispatch(getFilmList()),
+    sortAsFilmList: () => dispatch(sortAsFilmList()),
+    sortDesFilmList: () => dispatch(sortDesFilmList())
   };
 };
 
 class Films extends React.Component {
   componentDidMount() {
-    const { getFilmList } = this.props;
-    getFilmList();
+    const { getFilmList, filmsList } = this.props;
+    filmsList.length === 0 && getFilmList();
   }
+
+  handleClickSortAs = () => {
+    const { sortAsFilmList } = this.props;
+    sortAsFilmList();
+  };
+
+  handleClickSortDes = () => {
+    const { sortDesFilmList } = this.props;
+    sortDesFilmList();
+  };
 
   render() {
     const { filmsList, loading } = this.props;
-
-    const films = filmsList.results;
 
     return loading ? (
       <div className={styles.loading}>
@@ -36,11 +46,32 @@ class Films extends React.Component {
     ) : (
       <div className={styles.films}>
         <div className={styles.title}>Films</div>
-        {films && (
+        <div className={styles.sort}>
+          <p className={styles.sort_text}>Sort</p>
+          <div className={styles.sort_buttons}>
+            <button
+              onClick={this.handleClickSortAs}
+              className={styles.sort_button}
+            />
+            <button
+              onClick={this.handleClickSortDes}
+              className={styles.sort_button}
+            />
+          </div>
+        </div>
+        {filmsList && (
           <ul className={styles.films_list}>
-            {films.map(obj => (
+            {filmsList.map(obj => (
               <li key={obj.episode_id} className={styles.films_item}>
-                {obj.title}, episode {obj.episode_id}
+                <input
+                  type="checkbox"
+                  id={obj.episode_id}
+                  className={styles.hide}
+                />
+                <label htmlFor={obj.episode_id}>
+                  {obj.title}, episode {obj.episode_id}
+                </label>
+                <p className={styles.films_text}>{obj.opening_crawl}</p>
               </li>
             ))}
           </ul>
