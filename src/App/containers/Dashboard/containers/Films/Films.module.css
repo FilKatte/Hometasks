@@ -16,6 +16,37 @@
   letter-spacing: 0.03em;
 }
 
+.films_list {
+  width: 500px;
+  margin: 0 auto;
+}
+
+.films_item {
+  font-family: "Trebuchet MS", "Lucida Sans";
+  padding: 7px 20px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border-left: 10px solid #e9dc2b;
+  box-shadow: 2px -2px 5px 0 rgba(0, 0, 0, 0.1),
+    -2px -2px 5px 0 rgba(0, 0, 0, 0.1), 2px 2px 5px 0 rgba(0, 0, 0, 0.1),
+    -2px 2px 5px 0 rgba(0, 0, 0, 0.1);
+  font-size: 20px;
+  letter-spacing: 2px;
+  transition: 0.3s all linear;
+}
+
+.films_item:nth-child(2n) {
+  border-color: #1baaa5;
+}
+
+.films_item:hover {
+  border-right: 10px solid #e9dc2b;
+}
+
+.films_item:nth-child(2n):hover {
+  border-right: 10px solid #1baaa5;
+}
+
 .loading {
   position: absolute;
   top: 40%;

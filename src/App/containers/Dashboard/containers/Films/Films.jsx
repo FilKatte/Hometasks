@@ -37,9 +37,9 @@ class Films extends React.Component {
       <div className={styles.films}>
         <div className={styles.title}>Films</div>
         {films && (
-          <ul>
+          <ul className={styles.films_list}>
             {films.map(obj => (
-              <li key={obj.episode_id}>
+              <li key={obj.episode_id} className={styles.films_item}>
                 {obj.title}, episode {obj.episode_id}
               </li>
             ))}
