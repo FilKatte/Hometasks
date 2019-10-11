@@ -9,6 +9,8 @@ export const getPeopleListFailure = createAction(
   constants.GET_PEOPLE_LIST_FAILURE
 );
 
+export const clearPeopleList = createAction(constants.CLEAR_PEOPLE_LIST);
+
 const PeopleListReducer = handleActions(
   new Map([
     [
@@ -36,6 +38,18 @@ const PeopleListReducer = handleActions(
         failure: action.payload,
         loader: false
       })
+    ],
+
+    [
+      clearPeopleList,
+      state => {
+        return {
+          ...state,
+          peopleList: [],
+          nextLink:
+            "https://cors-anywhere.herokuapp.com/https://swapi.co/api/people"
+        };
+      }
     ]
   ]),
   {

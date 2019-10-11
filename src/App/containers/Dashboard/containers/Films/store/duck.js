@@ -9,6 +9,8 @@ export const getFilmListFailure = createAction(
   constants.GET_FILMS_LIST_FAILURE
 );
 
+export const clearFilmList = createAction(constants.CLEAR_FILMS_LIST);
+
 export const sortAsFilmList = createAction(constants.SORT_AS_FILMS_LIST);
 export const sortDesFilmList = createAction(constants.SORT_DES_FILMS_LIST);
 
@@ -57,6 +59,16 @@ const FilmsListReducer = handleActions(
           (a, b) => b["episode_id"] - a["episode_id"]
         );
         return { ...state, filmsList: [...sortedList] };
+      }
+    ],
+
+    [
+      clearFilmList,
+      state => {
+        return {
+          ...state,
+          filmsList: []
+        };
       }
     ]
   ]),
