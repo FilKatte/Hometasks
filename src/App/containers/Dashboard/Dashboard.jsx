@@ -9,7 +9,7 @@ class Dashboard extends React.Component {
     return (
       <div className={styles.dashboard}>
         <Switch>
-          <Route path="/dashboard/films" component={Films} />
+          {/* <Route path="/dashboard/films" component={Films} /> */}
           <Route path="/dashboard/people" component={People} />
           <Route path="/dashboard" component={Films} />
         </Switch>

@@ -160,3 +160,8 @@
   text-indent: 1.3em;
   padding: 10px;
 }
+
+.films_select {
+  width: 600px;
+  margin: 20px auto;
+}

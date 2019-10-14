@@ -3,8 +3,13 @@ import { connect } from "react-redux";
 import { filmsListSelector, loaderFilmsListSelector } from "./store/selectors";
 import { getFilmList, sortAsFilmList, sortDesFilmList } from "./store/duck";
 import styles from "./Films.module.css";
+import SearchSelect from "../../components/SearchSelect";
 
 const mapStateToProps = state => {
+  state = {
+    selectedOption: null
+  };
+
   return {
     filmsList: filmsListSelector(state),
     loading: loaderFilmsListSelector(state)
@@ -58,6 +63,10 @@ class Films extends React.Component {
               className={styles.sort_button}
             />
           </div>
+        </div>
+
+        <div className={styles.films_select}>
+          <SearchSelect filmsList={filmsList} />
         </div>
         {filmsList && (
           <ul className={styles.films_list}>
