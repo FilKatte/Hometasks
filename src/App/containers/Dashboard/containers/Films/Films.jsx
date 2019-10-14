@@ -69,7 +69,8 @@ class Films extends React.Component {
                   className={styles.hide}
                 />
                 <label htmlFor={obj.episode_id}>
-                  {obj.title}, episode {obj.episode_id}
+                  {obj.title}, episode {obj.episode_id},{" "}
+                  {obj.release_date.slice(0, 4)}
                 </label>
                 <p className={styles.films_text}>{obj.opening_crawl}</p>
               </li>
