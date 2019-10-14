@@ -1,6 +1,6 @@
 .films {
   width: 1024px;
-  height: calc(100% - 90px);
+  min-height: 100%;
   color: #3a3f44;
   background-color: #f5f5f5;
   border: 1px solid #ccc;
@@ -151,7 +151,7 @@
 
 .hide:checked ~ .films_text {
   display: block;
-  width: 460px;
+  width: 540px;
   font-family: "robotoregular", Arial, Helvetica, sans-serif;
   font-size: 16px;
   line-height: 1.4;

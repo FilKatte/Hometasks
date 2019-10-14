@@ -30,17 +30,15 @@ class App extends React.Component {
 
     return (
       <BrowserRouter>
-        <div className="wrapper">
-          <Switch>
-            <PrivateRoute
-              path="/dashboard"
-              permited={isLogin}
-              component={AppRouter}
-            />
-            <Route exact path="/login" component={Login} />
-            <Redirect to="/login" />
-          </Switch>
-        </div>
+        <Switch>
+          <PrivateRoute
+            path="/dashboard"
+            permited={isLogin}
+            component={AppRouter}
+          />
+          <Route exact path="/login" component={Login} />
+          <Redirect to="/login" />
+        </Switch>
       </BrowserRouter>
     );
   }
