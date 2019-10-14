@@ -6,10 +6,6 @@ import styles from "./Films.module.css";
 import SearchSelect from "../../components/SearchSelect";
 
 const mapStateToProps = state => {
-  state = {
-    selectedOption: null
-  };
-
   return {
     filmsList: filmsListSelector(state),
     loading: loaderFilmsListSelector(state)
