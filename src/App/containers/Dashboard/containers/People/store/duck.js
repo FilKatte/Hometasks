@@ -47,7 +47,7 @@ const PeopleListReducer = handleActions(
           ...state,
           peopleList: [],
           nextLink:
-            "https://cors-anywhere.herokuapp.com/https://swapi.co/api/people"
+            "https://cors-anywhere.herokuapp.com/https://swapi.co/api/people/"
         };
       }
     ]
@@ -56,7 +56,7 @@ const PeopleListReducer = handleActions(
     peopleList: [],
     failure: "",
     loader: false,
-    nextLink: "https://cors-anywhere.herokuapp.com/https://swapi.co/api/people"
+    nextLink: "https://cors-anywhere.herokuapp.com/https://swapi.co/api/people/"
   }
 );
 
