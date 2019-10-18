@@ -1,7 +1,0 @@
-.enter {
-  opacity: 0;
-}
-.enter-active {
-  opacity: 1;
-  transition: opacity 2000ms;
-}
