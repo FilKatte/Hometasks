@@ -40,7 +40,7 @@ class Films extends React.Component {
 
   render() {
     const { filmsList, loading } = this.props;
-    console.log("render");
+
     return (
       <div className={styles.films}>
         <div className={styles.title}>Films</div>
