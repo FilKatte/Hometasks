@@ -1,52 +1,50 @@
-import React from "react";
-import MessageItem from "./MessageItem";
+import React, { useState } from "react";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+
 import "./App.css";
 
-class Message extends React.Component {
-  state = {
-    value: "",
-    message: []
-  };
-
-  handleChange = event => {
-    this.setState({ value: event.target.value });
-  };
-
-  handleSubmit = event => {
-    const { value, message } = this.state;
-    event.preventDefault();
-    value &&
-      this.setState({
-        message: [...message, { text: value }],
-        value: ""
-      });
-  };
-
-  render() {
-    const { message } = this.state;
-
-    return (
-      <div>
-        <ul>
-          {message.map((mes, i) => (
-            <MessageItem key={i} text={mes.text} />
+function App() {
+  const [items, setItems] = useState([
+    { id: 1, text: "Buy eggs" },
+    { id: 2, text: "Pay bills" },
+    { id: 3, text: "Invite friends over" },
+    { id: 4, text: "Fix the TV" }
+  ]);
+  return (
+    <div style={{ marginTop: "2rem" }}>
+      <div style={{ marginBottom: "1rem" }}>
+        <TransitionGroup className="todo-list">
+          {items.map(({ id, text }) => (
+            <CSSTransition key={id} timeout={2000} classNames="item">
+              <div className="hello">
+                <button
+                  className="remove-btn"
+                  variant="danger"
+                  size="sm"
+                  onClick={() =>
+                    setItems(items => items.filter(item => item.id !== id))
+                  }
+                >
+                  &times;
+                </button>
+                {text}
+              </div>
+            </CSSTransition>
           ))}
-        </ul>
-
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Сообщение
-            <input
-              type="text"
-              value={this.state.value}
-              onChange={this.handleChange}
-            />
-          </label>
-          <input type="submit" value="Отправить" />
-        </form>
+        </TransitionGroup>
       </div>
-    );
-  }
+      <button
+        onClick={() => {
+          const text = prompt("Enter some text");
+          if (text) {
+            setItems(items => [...items, { id: new Date(), text }]);
+          }
+        }}
+      >
+        Add Item
+      </button>
+    </div>
+  );
 }
 
-export default Message;
+export default App;
