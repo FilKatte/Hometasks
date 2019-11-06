@@ -4,4 +4,13 @@
   overflow-y: auto;
   background: url("./assets/space.jpg") no-repeat fixed;
   background-size: cover;
+  position: relative;
+}
+
+.content {
+  z-index: 2;
+  height: 100%;
+  width: 1024px;
+  margin: 0 auto;
+  position: relative;
 }
