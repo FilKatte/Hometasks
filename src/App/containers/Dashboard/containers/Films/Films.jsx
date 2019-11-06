@@ -4,6 +4,7 @@ import { filmsListSelector, loaderFilmsListSelector } from "./store/selectors";
 import { getFilmList, sortAsFilmList, sortDesFilmList } from "./store/duck";
 import styles from "./Films.module.css";
 import SearchSelect from "../../components/SearchSelect";
+import Sort from "../../components/Sort";
 import { CSSTransition } from "react-transition-group";
 import "./style.css";
 
@@ -28,18 +29,8 @@ class Films extends React.Component {
     filmsList.length === 0 && getFilmList();
   }
 
-  handleClickSortAs = () => {
-    const { sortAsFilmList } = this.props;
-    sortAsFilmList();
-  };
-
-  handleClickSortDes = () => {
-    const { sortDesFilmList } = this.props;
-    sortDesFilmList();
-  };
-
   render() {
-    const { filmsList, loading } = this.props;
+    const { filmsList, loading, sortDesFilmList, sortAsFilmList } = this.props;
 
     return (
       <div className={styles.films}>
@@ -48,18 +39,10 @@ class Films extends React.Component {
           <div className={styles.films_select}>
             <SearchSelect filmsList={filmsList} />
           </div>
-          <div className={styles.sort}>
-            <div className={styles.sort_buttons}>
-              <button
-                onClick={this.handleClickSortAs}
-                className={styles.sort_button}
-              />
-              <button
-                onClick={this.handleClickSortDes}
-                className={styles.sort_button}
-              />
-            </div>
-          </div>
+          <Sort
+            sortDesFilmList={sortDesFilmList}
+            sortAsFilmList={sortAsFilmList}
+          />
         </div>
 
         {loading && (
