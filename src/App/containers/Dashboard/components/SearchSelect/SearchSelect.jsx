@@ -1,18 +1,28 @@
 import Select from "react-select";
 import React from "react";
+import styles from "./SearchSelect.module.css";
+import search from "../../assets/search.png";
 
 class SearchSelect extends React.Component {
   state = {
-    selectedOption: null
+    selectedOption: null,
+    visibility: false
   };
 
   handleChange = selectedOption => {
     this.setState({ selectedOption });
   };
 
+  showSearch = () => {
+    const { visibility } = this.state;
+    this.setState({
+      visibility: !visibility
+    });
+  };
+
   render() {
     const { filmsList } = this.props;
-    const { selectedOption } = this.state;
+    const { selectedOption, visibility } = this.state;
 
     const options =
       filmsList.length > 0
@@ -22,12 +32,25 @@ class SearchSelect extends React.Component {
         : [];
 
     return (
-      <Select
-        value={selectedOption}
-        onChange={this.handleChange}
-        isClearable={true}
-        options={options}
-      />
+      <div className={styles.search}>
+        <Select
+          value={selectedOption}
+          onChange={this.handleChange}
+          isClearable={true}
+          options={options}
+          className={
+            visibility
+              ? styles.searchSelect + " " + styles.active
+              : styles.searchSelect
+          }
+        />
+        <img
+          className={styles.search__icon}
+          src={search}
+          alt="search"
+          onClick={this.showSearch}
+        />
+      </div>
     );
   }
 }
