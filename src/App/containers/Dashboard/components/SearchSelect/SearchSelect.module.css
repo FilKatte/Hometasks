@@ -1,11 +1,12 @@
 .search {
   display: flex;
-  height: 40px;
+  align-items: center;
+  height: 37px;
 }
 .searchSelect {
   opacity: 0;
-  width: 0;
-  transition: 1s;
+  width: 0px;
+  transition: 0.4s;
 }
 
 .searchSelect.active {

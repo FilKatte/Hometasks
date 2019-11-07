@@ -10,7 +10,10 @@ class SearchSelect extends React.Component {
   };
 
   handleChange = selectedOption => {
-    this.setState({ selectedOption });
+    const { filterFilmList } = this.props;
+    this.setState({ selectedOption }, () => {
+      filterFilmList(selectedOption);
+    });
   };
 
   showSearch = () => {

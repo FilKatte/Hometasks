@@ -17,8 +17,8 @@ class CursorFollower extends React.Component {
 
   handleMouseMove = event => {
     this.setState({
-      x: event.clientX - 10,
-      y: event.clientY - 100
+      x: event.clientX,
+      y: event.clientY - 70
     });
   };
 

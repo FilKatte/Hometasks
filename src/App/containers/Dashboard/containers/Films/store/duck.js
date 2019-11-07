@@ -14,6 +14,8 @@ export const clearFilmList = createAction(constants.CLEAR_FILMS_LIST);
 export const sortAsFilmList = createAction(constants.SORT_AS_FILMS_LIST);
 export const sortDesFilmList = createAction(constants.SORT_DES_FILMS_LIST);
 
+export const filterFilmList = createAction(constants.FILTER_FILMS_LIST);
+
 const FilmsListReducer = handleActions(
   new Map([
     [
@@ -61,6 +63,17 @@ const FilmsListReducer = handleActions(
         return { ...state, filmsList: [...sortedList] };
       }
     ],
+    [
+      filterFilmList,
+      (state, action) => {
+        if (action.payload) {
+          const filteredList = state.filmsList.filter(
+            obj => obj.title === action.payload.value
+          );
+          return { ...state, filteredFilmsList: [...filteredList] };
+        } else return { ...state, filteredFilmsList: [] };
+      }
+    ],
 
     [
       clearFilmList,
@@ -74,6 +87,7 @@ const FilmsListReducer = handleActions(
   ]),
   {
     filmsList: [],
+    filteredFilmsList: [],
     failure: "",
     loader: false
   }
